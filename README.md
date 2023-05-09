@@ -1,2 +1,11 @@
 # PetitesClassesTroncCommun
-Solutions to problems given in recitation for courses MAT361, MAP361 and PHY361 at École Polytechnique.
+
+Problems sets in progress or currently available are listed below. All solution sheets were writen using ***TeXstudio***.
+
+## MAT361: Introduction to Real Analysis
+
+## MAP361: Randomness
+
+* PC4 (in progress)
+
+## PHY361: Quantum Mechanics

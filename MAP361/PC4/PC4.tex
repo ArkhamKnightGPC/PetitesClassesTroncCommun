@@ -1,0 +1,128 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}  % This package allows the importing of images
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\begin{document}
+	
+\title{PC 4: Vecteurs aléatoires à densités - lois conditionnelles}
+\date{Dernière modification \today}
+
+\maketitle
+
+\subsection*{Exercice 1}
+\textbf{Soit $X$ une variable aléatoire de loi $\mathcal{N}(0,1)$. Pour tout $p \in \mathbb{R}$, justifier que $e^{pX}$ est intégrable et calculer $\mathbb{E}(e^{pX})$.}
+\vspace{.3cm}
+\hrule
+\vspace{.3cm}
+{%SOLUTION
+	\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+		Une variable aléatoire $X \in L^0$ est dite $\mathbb{P}$ - intégrable si $\mathbb{E}(|X|) < +\infty$. Pour toute fonction mesurable $h : \mathbb{R} \to \mathbb{R}$, on a que $h$ est $P_X$ - intégrable si et seulement si $h(X)$ est $\mathbb{P}$ - intégrable.
+	\end{tcolorbox}
+
+	Par définition, $e^{pX}$ est intégrable si $\mathbb{E(|e^{pX}|)} < +\infty$.
+	
+	La fonction $e^{pX}$ est positive, donc $\mathbb{E(e^{pX})}$ a un sens a calculer. On note que 
+	\begin{equation}
+		|e^{px}|f(x) = \frac{e^{px} \cdot e^{-\frac{x^2}{2}} }{\sqrt{2\pi}}
+	\end{equation}
+	est bien intégrable par croissances comparées.
+	
+	Alors,
+	\begin{dmath}
+		\mathbb{E}(e^{pX}) = \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi}} e^{px - \frac{x^2}{2}}dx \\
+		= e^{\frac{p^2}{2}} \int_{-\infty}^{+\infty}  \frac{1}{\sqrt{2\pi}} e^{\frac{-(x-p)^2}{2}}dx \\
+		=e^{\frac{p^2}{2}}.
+	\end{dmath}
+}
+
+\newpage
+
+\subsection*{Exercice 2}
+\textbf{Soit $X$ e $Y$ deux variables aléatoires réelles independantes et $S = X + Y$. Lorsque $X$ et $Y$ suivent la loi exponentielle de paramètre $\lambda > 0$, déterminer la densité conditionnelle de $X$ sachant $S = s$. En déduire $\mathbb{E}(X|S)$.}
+\vspace{.3cm}
+\hrule
+\vspace{.3cm}
+{%SOLUTION
+	Par définition,
+	\begin{equation}
+		f_{X|S=s}(x) = \frac{f_{X,S}(x,s)}{f_{S}(s)}
+	\end{equation}
+	Alors, on veut calculer la loi jointe $f_{X,S}(x,s)$ et la loi marginale $f_{S}(s)$. On va utiliser la méthode de la fonction muette.
+	\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+		\textbf{Méthode de la fonction muette}\\
+		Soit $\mu$ une probabilité sur $\mathbb{R}$ telle que
+		\begin{equation}
+			\mathbb{E}(h(X)) = \int_{\mathbb{R}} h(x)\mu(dx),
+		\end{equation}
+		pour toute fonction $h$ continue bornée. Alors, $P_X = \mu$.
+	\end{tcolorbox}
+	Soit $\phi: \mathbb{R}^2 \to \mathbb{R}$ continue et bornée.
+	\begin{dmath}
+		\mathbb{E}[\phi(X,S)] = \mathbb{E}[\phi(X, X+Y)]\\
+											 = \iint\limits_{\mathbb{R}^2} \phi(x, x+y) f_{X,Y}(x,y) dx dy
+	\end{dmath}
+
+	On note que $f_{X,Y}(x,y) = f_X(x)f_Y(y) = [\lambda e^{-\lambda x} \mathfrak{1}_{x \geq 0}] [\lambda e^{-\lambda y} \mathfrak{1}_{y \geq 0}] = \lambda^2 e^{-\lambda(x+y)} \mathfrak{1}_{x,y \geq 0}$.
+	
+	On fait la substitution
+	\begin{equation}
+		\begin{cases}
+		u = x \\ v = x+y
+		\end{cases}
+	\end{equation}
+	
+	Alors,
+	\begin{equation}
+		\iint\limits_{\mathbb{R}^2} \phi(x, x+y) \lambda^2 e^{-\lambda(x+y)} \mathfrak{1}_{x,y \geq 0} dx dy = \iint\limits_{\mathbb{R}^2} \phi(u, v) \lambda^2 e^{-\lambda v} \mathfrak{1}_{v \geq u \geq 0} du dv.
+	\end{equation}
+
+	Donc, $(u,v) = (X,S)$ admet densité
+	\begin{equation}
+		f_{X,S}(x,s) = \lambda^2 e^{-\lambda s} \mathfrak{1}_{s \geq x \geq 0}
+	\end{equation}
+	
+	\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+		Pour vérifier ce résultat, on peut calculer la loi marginale $f_X(x)$.
+		\begin{dmath}
+			f_X(x) = \int_{0}^{+\infty} f_{X,S}(x,s) ds \\
+					  = \int_{x}^{+\infty} \lambda^2 e^{-\lambda s} ds \\
+					  = \lambda e^{-\lambda x} \text{ce qui est cohérent}.
+		\end{dmath}
+	\end{tcolorbox}
+
+	On calcule la loi marginale
+	\begin{dmath}
+		f_S(s) = \int_{0}^{+\infty} f_{X,S}(x,s) dx \\ = \int_{0}{s} \lambda^2 e^{-\lambda s} dx \\ = \lambda^2 s e^{-\lambda s} \mathfrak{1}_{s \geq 0}.
+	\end{dmath}
+
+	Donc, on a la densité conditionnelle
+	
+	\begin{equation}
+		f_{X|S=s}(x) = \frac{1}{s} \mathfrak{1}_{s \geq x \geq 0} \text{\quad on reconnait la loi uniforme $\mathcal{U}(0,s)$}.
+	\end{equation}
+	
+	Pour calculer $\mathbb{E}[X|S]$, on calcule d'abord $\mathbb{E}[X|S=s]$.
+	
+	\begin{dmath}
+		\mathbb{E}[X|S=s] = \int_{\mathbb{R}} x f_{X|S=s}(x) dx \\ = \int_{0}{s} \frac{x}{s} dx \\ = \frac{s}{2}.
+	\end{dmath}
+
+	Donc, $\mathbb{E}[X|S] = \frac{S}{2}$.
+	
+}
+
+
+\end{document}
