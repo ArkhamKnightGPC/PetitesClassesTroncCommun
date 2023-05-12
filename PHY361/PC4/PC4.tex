@@ -1,0 +1,229 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}  % This package allows the importing of images
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{array}
+
+\begin{document}
+	
+	\title{PC 4: Quantification de l'énergie}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\subsection*{Exercice 1: Le puits infini à une dimension}
+	\textbf{On considère une particule de masse $m$ dans un puits de potentiel unidimensionnel délimité par des barrières de hauteur infinie situées en $x=0$ et $x=L$:
+		\begin{equation}
+			V(x) = \begin{cases}
+			+\infty \quad \text{pour $x<0$} \\
+			0 \quad \quad \text{pour $x \in [0, L]$}\\
+			+\infty \quad \text{pour $x > L$}
+			\end{cases}
+		\end{equation}
+	}
+	\vspace{.3cm}
+	\hrule
+	\vspace{.3cm}
+	{%SOLUTION
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q1}} On peut chercher des solutions réelles sans perte de généralité. Écrire la solution générale réelle de l'équation de Schrödinger indépendante du temps d'énergie $E$ dans le potentiel $V$.
+		\end{tcolorbox}
+	D'abord, on écritl'équation de Schrödinger indépendante du temps à une dimension
+	\begin{equation}
+		\frac{d}{dx^2}\psi(x) + \frac{2m}{\hbar^2}(E -V)\psi(x) = 0.
+	\end{equation}
+	Si $x < 0$ ou $x > L$, on a $\psi(x) = 0$.
+	Alors, si $0 < x < L$,
+	\begin{equation}
+		\frac{d}{dx^2}\psi(x) = -\frac{2mE}{\hbar^2}\psi(x).
+	\end{equation}
+	C'est l'équation pour le mouvement harmonique simple avec $k = \sqrt{\frac{2mE}{\hbar^2}}$.
+	
+	Donc,
+	\begin{equation}
+		\psi(x) = \begin{cases}
+			0 \quad \text{si $x < 0$}\\
+			A\cos(kx) + B\sin(kx) \quad \text{si $x \in [0,L]$}\\
+			0 \quad \text{si $x > L$}.
+		\end{cases}
+	\end{equation}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q2}} Montrer que le spectre des énergies permises est discret.
+	\end{tcolorbox}
+
+	On utilise les conditions aux bords,
+	\begin{equation}
+		\begin{cases}
+		\psi(0^-) = \psi(0^+)\\
+		\psi(L^-) = \psi(L^+).
+		\end{cases}
+	\end{equation}
+	
+	Donc,
+	\begin{equation}
+	\begin{cases}
+	A = 0\\
+	B\sin(kL) = 0.
+	\end{cases}
+	\end{equation}
+	
+	On note que $\sin(kL) = 0 \iff L = \frac{n\pi}{k_n} = n\pi \sqrt{\frac{\hbar^2}{2mE_n}} , n\in \mathbb{N}$. Donc,
+	
+	\begin{equation}
+		\label{eqn:en}
+		E_n = \frac{\hbar^2}{2mL^2}n^2\pi^2
+	\end{equation}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q3}} Montrer que les fonctions d'onde stationnaires $\psi_n(x)$ d'énergies respectives $E_n$ peuvent s'écrire $\psi_n(x) = \sqrt{\frac{2}{L}}\sin(\frac{n \pi x}{L})$.
+	\end{tcolorbox}
+	En utilisant (\ref{eqn:en}), on note que $k_n = \sqrt{\frac{2m}{\hbar^2} \frac{\hbar^2}{2mL^2}n^2\pi^2} = \frac{n \pi}{L}$.
+	
+	Pour calculer $\psi_n(x)$ on utilise la condition de normalisation,
+	\begin{equation}
+		\int_{0}^{L} |\psi_n(x)|^2 dx = 1 \iff \int_{0}^{L} B^2 \sin^2\left(\frac{n\pi}{L}x\right) dx = 1.
+	\end{equation}
+	
+	En utilisant l'identité $\sin(\frac{\theta}{2}) = \frac{1 - \cos(\theta)}{2}$, on obtient
+	
+	\begin{dmath}
+		\int_{0}^{L} B^2 \sin^2\left(\frac{n\pi}{L}x\right) dx = \int_{0}^{L} \frac{B^2}{2} dx - \int_{0}^{L} \frac{B^2}{2}\cos(\frac{2n\pi}{L}x) dx \\
+		= \frac{B^2L}{2} - \frac{B^2}{2n\pi}\sin(\frac{2n\pi}{L}x)\bigg\rvert_{x=0}^{x=L}\\
+		= \frac{B^2}{L}.
+	\end{dmath}
+	
+	\begin{equation}
+		\frac{B^2 L}{2} = 1 \iff B = \sqrt{\frac{2}{L}}.
+	\end{equation}
+	
+	Donc, $\psi_n(x) = \sqrt{\frac{2}{L}}\sin(\frac{n \pi x}{L})$.
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q4}} Comparer l'état fondamental (le minimum d'énergie) au cas classique. Interpreter.
+	\end{tcolorbox}
+
+	Dans le cas classique, l'état fondamental a $E=0$.
+	Au cas quantique, $E_1 = \frac{\hbar^2 \pi^2}{2mL^2} > 0$
+	
+	Par l'inegalité de Heisenberg, si $\Delta x < L \implies \Delta p \geq \frac{\hbar}{2L}$. Donc,
+	\begin{equation}
+		E = \frac{p^2}{2m} \simeq \frac{\Delta p^2}{2m} \geq \frac{\hbar^2}{2mL^2} > 0.
+	\end{equation}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q5}} Calculer $\langle x \rangle$, $\langle x^2 \rangle$ pour l'état stationnaire $\psi_n(x)$. En déduire $Delta x$ et intrepreter l'expression obtenue à grand n.
+	\end{tcolorbox}
+	
+	\subsubsection*{Calculer $\langle x \rangle$}
+	
+	\begin{dmath}
+		\langle x \rangle = \int_{0}^{L} x |\psi_n(x)|^2 dx \\
+		= \int_{0}^{L} \frac{2x}{L} \sin^2\left(\frac{n\pi x}{L}\right) dx\\
+		= \int_{0}^{L} \frac{x}{L} \left(1 - \cos \left(\frac{2n\pi x}{L}\right)\right) dx\\
+		= \int_{0}^{L} \frac{x}{L} dx - \int_{0}^{L} \frac{x}{L}\cos\left(\frac{2n\pi x}{L} \right)dx\\
+		= \frac{L^2}{2L} - \frac{x}{L} \cdot \frac{L}{2n\pi}\sin\left(\frac{2n\pi x}{L}\right)\bigg\rvert_{x=0}^{x=L} + \int_{0}^{L} \frac{1}{2n\pi}\sin\left(\frac{2n\pi x}{L}\right) dx\\
+		= \frac{L}{2} - L\cos\left(\frac{2n\pi x}{L}\right)\bigg\rvert_{x=0}^{x=L}
+		= \frac{L}{2}.
+	\end{dmath}
+	
+	\subsubsection*{Calculer $\langle x^2 \rangle$}
+	
+	\begin{dmath}
+		\langle x^2 \rangle = \int_{0}^{L} \frac{2x^2}{L} \sin^2\left(\frac{n\pi x}{L}\right) dx\\
+		= \int_{0}^{L}\frac{x^2}{L} \left(1 - \cos \left(\frac{2n\pi x}{L}\right)\right) dx\\
+		= \int_{0}^{L} \frac{x^2}{L} dx - \int_{0}^{L} \frac{x^2}{L}\cos\left(\frac{2n\pi x}{L} \right)dx
+	\end{dmath}
+	
+	\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+		\textbf{\large{Integration par parties tabular (\textit{Méthode Tic Tac Toe})}}
+		
+		 \begin{center}
+		 	\begin{tabular}[5pt]{c c c}
+		 		$\frac{x^2}{L}$ & $\cos\left(\frac{2n\pi x}{L} \right)$  &  \\ \\[-1em]
+		 		$\frac{2x}{L}$& $\frac{L}{2n\pi}\sin\left(\frac{2n\pi x}{L} \right)$ &  +\\ \\[-1em]
+		 		\\[-1em]
+		 		$\frac{2}{L}$& $-\left(\frac{L}{2n\pi}\right)^2\cos\left(\frac{2n\pi x}{L} \right)$ &  -\\ \\[-1em]
+		 		\\[-1em]
+		 		$0$ & $-\left(\frac{L}{2n\pi}\right)^3\sin\left(\frac{2n\pi x}{L} \right)$  &  +\\ 
+		 	\end{tabular}
+		 \end{center}
+		
+		Donc,
+		
+		\begin{equation}
+			\int \frac{x^2}{L}\cos\left(\frac{2n\pi x}{L} \right) = \frac{x^2}{2n\pi}\sin\left(\frac{2n\pi x}{L}\right) + \frac{xL}{2n^2\pi^2}\cos\left(\frac{2n\pi x}{L}\right) - \frac{L^2}{4n^3\pi^3}\sin\left(\frac{2n\pi x}{L}\right).
+		\end{equation}
+		
+	\end{tcolorbox}
+
+	On revient à $\langle x^2 \rangle$,
+	
+	\begin{equation}
+		\langle x^2 \rangle = \frac{L^3}{3} - \frac{L^2}{2n^2\pi^2}.
+	\end{equation}
+	
+	\subsubsection*{Calculer $\Delta x$}
+	
+	Par définition,
+	
+	\begin{equation}
+		\Delta x = \langle x^2 \rangle - \langle x \rangle^2 = \frac{L^2}{12} - \frac{L^2}{2n^2\pi^2}.
+	\end{equation}
+	
+	On note que
+	
+	\begin{equation}
+		\lim_{n \to +\infty} \Delta x = \frac{L^2}{12},
+	\end{equation}
+	
+	la variance de la distribution uniforme $\mathcal{U}(0, L)$.
+	}
+
+	\subsection*{Exercice 2: États non stationnaires}
+	\textbf{On considère une particule préparée, à l'instant $t=0$, dans une superposition:
+		\begin{equation}
+		\psi(x, t=0) = \frac{1}{\sqrt{2}}[\psi_1(x) + \psi_2(x)],
+		\end{equation}
+		$\psi_1(x)$ et $\psi_2(x)$ étant les fonctions d'onde associées aux 2 états de plus baisse énergie du puits infini de l'exercice précédent.
+	}
+	\vspace{.3cm}
+	\hrule
+	\vspace{.3cm}
+	{%SOLUTION
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q1}} Calculer $\psi(x,t)$. Si on effectue une mesure de l'énergie sur ce système au temps $t$, quels sont les résultats possibles et avec quelles probabilités ? Quelle est la valeur moyenne de l'énergie et son écart-type ?
+		\end{tcolorbox}
+		
+		L'évolution temporelle des $\psi_n(x)$ est donné sous la forme séparable
+		
+		\begin{equation}
+			\psi(x, t) = \frac{1}{\sqrt{2}}\psi_1(x)e^{\frac{-iE_1t}{\hbar}} + \frac{1}{\sqrt{2}}\psi_2(x)e^{\frac{-iE_2t}{\hbar}}
+		\end{equation}
+		
+		Les résultats possibles d'une mesure d'énergie sont $E_1$ et $E_2 = 4E_1$ avec probabilités $\frac{1}{2}$ et $\frac{1}{2}$. Donc,
+		
+		\begin{equation}
+			\begin{cases}
+				\langle E \rangle = \frac{E_1 + E_2}{2} = \frac{5}{2}E_1\\
+				\langle E^2 \rangle = \frac{E_1^2 + E_2^2}{2} = \frac{17}{2}E_1^2\\
+				\Delta E^2 = \left(\frac{E_1 - E_2}{2}\right)^2 = \frac{9}{4}E_1^2 \\
+				\Delta E = \frac{|E_1 - E_2|}{2} = \frac{3}{2}E_1.
+			\end{cases}
+		\end{equation}
+	}
+
+\end{document}

@@ -9,3 +9,5 @@ Problems sets in progress or currently available are listed below. All solution 
 * PC4 (in progress)
 
 ## PHY361: Quantum Mechanics
+
+* PC4: *Quantification de l'énergie*
