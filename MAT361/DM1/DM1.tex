@@ -146,6 +146,8 @@
 	Donc, $\mathcal{F}$ est uniformement continue.
 	
 
+	\newpage
+
 	\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
 		\textbf{\large{Théorème d'Ascoli}} Soit $(Y,d)$ un espace métrique compact. Soit $\mathcal{F} \subset \mathcal{C}(Y; \mathbb{R})$ une famille de fonctions qui vérifie les hypothèses suivantes.
 		\begin{itemize}
@@ -172,13 +174,21 @@
 	Donc, il reste juste montrer que $\bar{\mathcal{F}}$ est précompact.
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q10}} Soit $\delta$ tel que pour tout $f \in \mathcal{F}$ on ait l'implication $d(y, y\sp{\prime}) < \delta \implies |f(y) - f(y\sp{\prime})| < \frac{\epsilon}{3}$. Montrer qu'il existe $y_1,...,y_N \in Y$ tels que $Y=\cup_{i=0}^{N}B_Y(y_i, \delta)$.
+		\textbf{\large{Q10}} Soit $\delta$ tel que pour tout $f \in \mathcal{F}$ on ait l'implication $d(y, y\sp{\prime}) < \delta \implies |f(y) - f(y\sp{\prime})| < \frac{\epsilon}{3}$. Montrer qu'il existe $y_1,...,y_N \in Y$ tels que $Y=\cup_{i=1}^{N}B_Y(y_i, \delta)$.
 	\end{tcolorbox}
+
+	Soit $y \in Y$,
+	
+	\[\forall f \in \mathcal{F} \quad f(B_Y(y, \delta)) \subset B\left(f(y), \frac{\epsilon}{3}\right).\]
+	
+	On note que la famille $(B_Y(y, \delta))_{y \in Y}$ est un recouvrement de $Y$. $(Y,d)$ compact $\implies$ cette recouvrement possède un sous-recouvrement fini.
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q11}} Montrer que $\mathcal{F}(y_1,...,y_N) = \{(f(y_1),...,f(y_N)) | f \in \mathcal{F}\} \subset \mathbb{R}^N$ est précompact. En déduire qu'il existe M tel que
 		\[\mathcal{F}(y_1,...,y_N) \subset \bigcup_{j=1}^{M}B_{\mathbb{R}^N}\left((f_j(y_i)_{i\in[1,N]}), \frac{\epsilon}{3}\right).\]
 	\end{tcolorbox}
+
+	
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q12}} Montrer que $\mathcal{F} \subset \cup_{j=1}^{M} B(f_j, \epsilon)$. En déduire que $\mathcal{F}$ est précompact.
