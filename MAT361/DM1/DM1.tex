@@ -188,10 +188,16 @@
 		\[\mathcal{F}(y_1,...,y_N) \subset \bigcup_{j=1}^{M}B_{\mathbb{R}^N}\left((f_j(y_i)_{i\in[1,N]}), \frac{\epsilon}{3}\right).\]
 	\end{tcolorbox}
 
+	Par hypothèse, $\mathcal{F}(y)$ est une partie bornée de $\mathbb{R}$.
+	Donc, $\mathcal{F}(y_1,...,y_N)$ est une partie bornée de $\mathbb{R}^N$.
+	Donc, $\mathcal{F}(y_1,...,y_N)$ est précompact.
 	
+	Donc, par définition de précompacité $\exists f_1,...,f_M$ tel que $\mathcal{F}(y_1,...,y_N) \subset \cup_{i=1}^{M} B_{\mathbb{R}^N}\left( (f_i(y_1), ... , f_i(y_N)), \frac{\epsilon}{3}\right)$.
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q12}} Montrer que $\mathcal{F} \subset \cup_{j=1}^{M} B(f_j, \epsilon)$. En déduire que $\mathcal{F}$ est précompact.
 	\end{tcolorbox}
+
+	$ Y = \cup_{i=1}^{N} B_Y(y_i, \delta)) \implies \forall f \in \mathcal{F}, f(Y) = \cup_{i=1}^{N} f(B_Y(y_i, \delta)) \subset \cup_{i=1}^{N} B\left(f(y), \frac{\epsilon}{3}\right)$
 	
 \end{document}
