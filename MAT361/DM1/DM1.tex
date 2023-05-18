@@ -119,34 +119,69 @@
 	
 	$(X,d)$ précompact $\implies$ par le Principe de Dirichlet que $\forall \epsilon > 0$ il existe une sous-suite $(x_{\phi(n)})_{n \geq 0}$ dans une boule ouvert de rayon $\epsilon$. Donc, $\forall n,m \quad d(x_n, x_m) < \epsilon$. Donc, $(x_{\phi(n)})_{n \geq 0}$ est une suite de Cauchy. $(X,d)$ complet implique que $(x_{\phi(n)})_{n \geq 0}$ converge $\implies \quad (x_n)_{n \geq 0}$ a un valeur d'adhérence.
 
-	\newpage
+	\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+		\textbf{\large{Définition}} Soit $(Y,d)$ un espace métrique. Soit $\mathcal{F} \subset \mathcal{C}(Y; \mathbb{R})$ une famille d'applications continues de $Y$ vers $\mathbb{R}$.
+		\begin{itemize}
+			\item On dit que la famille $\mathcal{F}$ est \textbf{équicontinue} au point $y \in Y$ si pour tout $\epsilon > 0$, il existe $\delta > 0$ tel que
+			\[\forall f \in \mathcal{F} \quad \forall y\sp{\prime} \in Y \quad d(y,y\sp{\prime}) < \delta \implies |f(y) - f(y\sp{\prime})| < \epsilon.\]
+			\item On dit que la famille $\mathcal{F}$ est \textbf{équicontinue} sur $Y$ si elle est équicontinue en tout point de $y \in Y$.
+			\item On dit que la famille $\mathcal{F}$ est \textbf{uniformement équicontinue} si pour tout $\epsilon > 0$, il existe $\delta > 0$ tel que
+				\[\forall f \in \mathcal{F} \quad \forall y,y\sp{\prime} \in Y \quad d(y,y\sp{\prime}) < \delta \implies |f(y) - f(y\sp{\prime})| < \epsilon.\]
+		\end{itemize}
+	\end{tcolorbox}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q7}} 
+		\textbf{\large{Q7}} Montrer que si $(Y,d)$ est compact et $\mathcal{F}$ est une famille équicontinue sur $Y$ alors elle est uniformement équicontinue.
+	\end{tcolorbox}
+
+	Soit $\epsilon > 0$. Comme $\mathcal{F}$ est équicontinue sur $Y$, il existe $\forall y \in Y$ une boule ouverte $B(y, \delta_y)$ tel que $\forall f \in \mathcal{F}, f(B(y, \delta_y)) \subset B(f(y), \frac{\epsilon}{2})$.
+	
+	On note que la famille $B(y, \delta_y)_{y \in Y}$ est un recouvrement de $Y$.
+	
+	$(Y,d)$ compact $\implies \exists r>0$ tel que toute boule ouverte de rayon $r$ est contenue dans l'une des boules $B(y, \delta_y)$.
+	
+	Donc,
+	\[\forall a,b \in Y \quad d(a, b) < r \implies |f(a) - f(b)| \leq |f(a) - f(y)| + |f(y) - f(b)| < \epsilon. \]
+	
+	Donc, $\mathcal{F}$ est uniformement continue.
+	
+
+	\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+		\textbf{\large{Théorème d'Ascoli}} Soit $(Y,d)$ un espace métrique compact. Soit $\mathcal{F} \subset \mathcal{C}(Y; \mathbb{R})$ une famille de fonctions qui vérifie les hypothèses suivantes.
+		\begin{itemize}
+			\item La famille $\mathcal{F}$ est équicontinue sur $Y$.
+			\item Pour tout $y \in Y$, l'ensemble $\mathcal{F}(y) = \{f(y) : f \in \mathcal{F}\}$ est une partie bornée de $\mathbb{R}$.
+		\end{itemize}
+		Alors, de toute suite d'éléments de $\mathcal{F}$ on peut extraire une sous-suite qui converge dans $(\mathcal{C}(Y, \mathbb{R}), ||\cdot||_{\infty})$.
 	\end{tcolorbox}
 	
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q8}} 
+		\textbf{\large{Q8}} Montrer que pour démontrer le théorème, il suffit de montrer que $\bar{\mathcal{F}}$ est compact.
+	\end{tcolorbox}
+
+	Pour démontrer le théorème, il faut montrer que toute suite dans $\mathcal{F}$ a une valeur d'adhérence dans $(\mathcal{C}(Y, \mathbb{R}), ||\cdot||_{\infty})$, on peut restreindre $(\mathcal{C}(Y, \mathbb{R}), ||\cdot||_{\infty})$ au ensemble des limites des suites convergentes d'éléments de $Y$. Donc, il suffit de montrer que toute suite dans $\mathcal{F}$ a une valeur d'adhérence dans $\bar{\mathcal{F}} \iff \bar{\mathcal{F}}$ est compact.
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q9}} En déduire qu'il suffit de montrer que $\mathcal{F}$ est précompact.
+	\end{tcolorbox}
+
+	$\bar{\mathcal{F}}$ est compact $\iff \bar{\mathcal{F}}$ est complet et précompact.
+	
+	On note que l'adhérence $\bar{\mathcal{F}}$ est une fermé dans l'espace de Banach $(\mathcal{C}(Y,\mathbb{R}), ||\cdot||_{\infty})$ donc $\bar{\mathcal{F}}$ est complet.
+	
+	Donc, il reste juste montrer que $\bar{\mathcal{F}}$ est précompact.
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q10}} Soit $\delta$ tel que pour tout $f \in \mathcal{F}$ on ait l'implication $d(y, y\sp{\prime}) < \delta \implies |f(y) - f(y\sp{\prime})| < \frac{\epsilon}{3}$. Montrer qu'il existe $y_1,...,y_N \in Y$ tels que $Y=\cup_{i=0}^{N}B_Y(y_i, \delta)$.
 	\end{tcolorbox}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q9}} 
+		\textbf{\large{Q11}} Montrer que $\mathcal{F}(y_1,...,y_N) = \{(f(y_1),...,f(y_N)) | f \in \mathcal{F}\} \subset \mathbb{R}^N$ est précompact. En déduire qu'il existe M tel que
+		\[\mathcal{F}(y_1,...,y_N) \subset \bigcup_{j=1}^{M}B_{\mathbb{R}^N}\left((f_j(y_i)_{i\in[1,N]}), \frac{\epsilon}{3}\right).\]
 	\end{tcolorbox}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q10}} 
-	\end{tcolorbox}
-
-	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q11}} 
-	\end{tcolorbox}
-
-	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q12}} 
-	\end{tcolorbox}
-
-	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q13}} 
+		\textbf{\large{Q12}} Montrer que $\mathcal{F} \subset \cup_{j=1}^{M} B(f_j, \epsilon)$. En déduire que $\mathcal{F}$ est précompact.
 	\end{tcolorbox}
 	
 \end{document}
