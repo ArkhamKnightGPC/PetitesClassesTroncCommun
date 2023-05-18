@@ -95,8 +95,18 @@
  		\textbf{\large{Q5}} Soit $(X,d)$ un espace métrique et $Z \subset X$ précompact. Montrer que $\bar{Z}$ l'adhérence de $Z$ est précompacte.
  	\end{tcolorbox}
  
+ 	Soit $\epsilon > 0$, on veut construire une recouvrement fini de $\bar{Z}$ par des boules ouvertes de rayon $\epsilon$.
  	
-	
+ 	$Z$ précompact $\implies \exists (x_1,...x_n) \in Z^n$ tel que $Z = \cup_{i=1}^{n} B(x_i, \frac{\epsilon}{2})$.
+ 	
+ 	$\bar{Z}$ est l'ensemble des limites de suites convergentes d'éléments de $Z$. Donc, $\forall x \in \bar{Z} \quad \exists y \in Z$ tel que $d(x, y) < \frac{\epsilon}{2}$. On note que $\exists 1 \leq i \leq n$ tel que $y \in B(x_i, \frac{\epsilon}{2})$.
+ 	
+ 	Par l'inegalité triangulaire,
+ 	
+ 	\[d(x, x_i) \leq d(x, y) + d(y, x_i) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+ 	
+ 	Donc, $\bar{Z} = \cup_{i=1}^{n} B(x_i, \epsilon)$. 
+ 	
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q6}} Montrer que $(X,d)$ est compact si et seulement s'il est complet et précompact.
 	\end{tcolorbox}
