@@ -1,0 +1,290 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}  % This package allows the importing of images
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{array}
+
+\begin{document}
+	
+	\title{PC 1: Probabilités, Interférences et Dualité}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\subsection*{Exercice 1: La désintégration d'une particule radioactive}
+	\textbf{Beaucoup de phénomènes naturels peuvent être modélisés par des processus sans mémoire. On va étudier la désintégration radioactive d'une particule, qui appartient à cette classe de processus. Le processus est défini de la manière suivante: si la particule ne s'est pas désintégrée au temps $t$, sa probabilité de désintégration pendant l'intervalle de temps infinitésimal $[t, t + \delta t]$ s'écrit $\frac{\delta t}{\tau}$, où $\tau > 0$ est une constante. Notons $P_S(t)$ la probabilité de survie (non désintégration) à l'instant t.
+	}
+	\vspace{.3cm}
+	\hrule
+	\vspace{.3cm}
+	{%SOLUTION
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q1}} Déterminer $P_S(t + \delta t)$ en fonction de $P_S(t)$, de $\tau$ et de $\delta t$. 
+		\end{tcolorbox}
+	
+		Si la particule survie jusqu'à l'instant $t + \delta t$, ça veut dire que elle a survecu jusqu'à l'instant $t$ et en suite, ne s'est pas désintégré pendant l'intervalle $[t, t + \delta t]$. Donc,
+		\begin{equation}
+			P_S(t + \delta t) = P_S(t) \cdot \left(1 - \frac{\delta t}{\tau}\right)
+		\end{equation}
+	
+	
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q2}} Déduire l'expression de $P_S(t)$.
+		\end{tcolorbox}
+	
+		Utilisant l'exercice précedent, on note que
+		\begin{equation}
+			\frac{P_S(t + \delta t) - P_S(t)}{\delta t} = -\frac{P_S(t)}{\tau}.
+		\end{equation}
+		
+		Prenons la limite lorsque $\delta t \to 0$,
+		
+		\begin{equation}
+			\frac{d}{dt}P_S(t) = -\frac{P_S(t)}{\tau} \iff P_S(t) = e^{-\frac{t}{\tau}}.
+		\end{equation}
+		
+		On note que $P_S(0) = 1$.
+		
+		Il s'agit de la densité de la distribution exponentielle avec paramètre $\tau$.
+	
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q3}} Déterminer la densité de probabilité du temps de désintégration $p(t)$.
+		\end{tcolorbox}
+	
+		Soit $T$ l'instant de désintégration. On note que $T \sim p(t)$. On regarde la fonction de répartition de $T$. La probabilité que $T \leq t$ est égal à la probabilité que la particule n'est pas en vie à l'instant $t$. Donc, 
+		
+		\begin{equation}
+			\mathbb{P}(T \leq t) = 1 - P_S(t) \implies \int_{0}^{t} p(t) dt = 1 - P_S(t)
+		\end{equation}
+		
+		Par le théorème fondamental du calcul, 
+		
+		\begin{equation}
+			p(t) = \frac{d}{dt} (1 - P_S(t)) = -\frac{d}{dt}P_S(t).
+		\end{equation}
+		
+		Donc,
+		
+		\begin{equation}
+			p(t) = \frac{1}{\tau}e^{-\frac{t}{\tau}}.
+		\end{equation}
+	
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q4}} Vérifier que $p(t)$ est bien une densité de probabilité.
+		\end{tcolorbox}
+	
+		On note que $p(t) \geq 0 \quad \forall t \in \Omega = \mathbb{R}_+$.
+		
+		\begin{dmath}
+			\int_{0}^{+\infty} p(t) dt = \int_{0}^{+\infty} \frac{1}{\tau} e^{-\frac{t}{\tau}} \\
+			= -e^{-\frac{t}{\tau}} \bigg\rvert_{t=0}^{t \to +\infty} \\
+			= 1 \text{, donc $p(t)$ est normalisée.}
+		\end{dmath}
+	
+	
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q5}} Calculer alors la durée de vie moyenne de la particule et sa variance.
+		\end{tcolorbox}
+	
+		\subsubsection*{Calculer durée de vie moyenne $\langle T \rangle$}
+		
+		\begin{equation}
+			\langle T \rangle = \int_{0}^{+\infty} t \cdot p(t) dt\\
+			= \int_{0}^{+\infty} \frac{t}{\tau}e^{-\frac{t}{\tau}} dt\\
+		\end{equation}
+		
+		\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+			\textbf{\large{Integration par parties tabular}}
+			
+			\begin{center}
+				\begin{tabular}[5pt]{c c c}
+					$\frac{t}{\tau}$ & $e^{-\frac{t}{\tau}}$  &  \\ \\[-1em]
+					$\frac{1}{\tau}$& $-\tau e^{-\frac{t}{\tau}}$ &  +\\ \\[-1em]
+					$0$& $\tau^2e^{-\frac{t}{\tau}}$ &  -\\
+				\end{tabular}
+			\end{center}
+			
+			Donc,
+			
+			\begin{equation}
+			\int \frac{t}{\tau}e^{-\frac{t}{\tau}} dt = -te^{-\frac{t}{\tau}} - \tau e^{-\frac{t}{\tau}}.
+			\end{equation}
+			
+		\end{tcolorbox}
+	
+		Donc,
+		
+		\begin{dmath}
+			\langle T \rangle = \left( -te^{-\frac{t}{\tau}} - \tau e^{-\frac{t}{\tau}} \right)\bigg\rvert_{t=0}^{t \to +\infty}\\
+			= \tau
+		\end{dmath}
+	
+		\subsubsection*{Calculer $\langle T^2 \rangle$}
+		
+		\begin{equation}
+		\langle T \rangle = \int_{0}^{+\infty} t^2 \cdot p(t) dt\\
+		= \int_{0}^{+\infty} \frac{t^2}{\tau}e^{-\frac{t}{\tau}} dt\\
+		\end{equation}
+		
+		\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+			\textbf{\large{Integration par parties tabular}}
+			
+			\begin{center}
+				\begin{tabular}[5pt]{c c c}
+					$\frac{t^2}{\tau}$ & $e^{-\frac{t}{\tau}}$  &  \\ \\[-1em]
+					$\frac{2t}{\tau}$ & $-\tau e^{-\frac{t}{\tau}}$  &  +\\ \\[-1em]
+					$\frac{2}{\tau}$& $\tau^2e^{-\frac{t}{\tau}}$ &  -\\ \\[-1em]
+					$0$& $-\tau^3e^{-\frac{t}{\tau}}$ &  +\\
+				\end{tabular}
+			\end{center}
+			
+			Donc,
+			
+			\begin{equation}
+			\int \frac{t^2}{\tau}e^{-\frac{t}{\tau}} dt = -t^2e^{-\frac{t}{\tau}} - 2t\tau e^{-\frac{t}{\tau}} -2\tau^2e^{-\frac{t}{\tau}}.
+			\end{equation}
+			
+		\end{tcolorbox}
+	
+		Donc,
+		
+		\begin{dmath}
+			\langle T^2 \rangle = \left( -t^2e^{-\frac{t}{\tau}} - 2t\tau e^{-\frac{t}{\tau}} -2\tau^2e^{-\frac{t}{\tau}} \right)\bigg\rvert_{t=0}^{t \to +\infty}\\
+			= 2\tau^2.
+		\end{dmath}
+	
+		\subsubsection*{Calculer variance $\Delta T ^2$}
+		
+		\begin{dmath}
+			\Delta T^2  = \langle T^2 \rangle - \langle T \rangle ^2 \\
+			= 2\tau^2 - \tau^2 \\
+			= \tau^2.
+		\end{dmath}
+	
+		On peut en déduire le écart-type, $\Delta T = \tau$.
+	}
+
+	\newpage
+
+	\subsection*{Exercice 2: Distribution gaussienne}
+	\textbf{On considère la densité de probabilité suivante, définie par une fonction gaussienne:
+		\begin{equation}
+			p(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}}
+		\end{equation}
+		où $x$ et $x_0$ sont des nombres réels, et $\sigma$ est un nombre réel positif.
+	}
+	\vspace{.3cm}
+	\hrule
+	\vspace{.3cm}
+	{%SOLUTION
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q1}} Vérifier qu'il s'agit bien d'une densité de probabilité.\\
+			\textit{Formule utile: $\int_{-\infty}^{+\infty} e^{-\frac{z^2}{2}} dz = \sqrt{2\pi}$}.
+		\end{tcolorbox}
+	
+		On note que $p(x) \geq 0 \quad \forall x \in \Omega = \mathbb{R}$.
+		
+		\begin{dmath}
+			\int_{-\infty}^{+\infty} p(x) dx = \int_{-\infty}^{+\infty} \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}} dx \\
+			= 2 \int_{x_0}^{+\infty} \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}} dx.
+		\end{dmath}
+	
+		Faisons la substitution $u = \frac{x - x_0}{\sigma} \implies dx = \sigma \cdot du$.
+		
+		\begin{dmath}
+			\int_{x_0}^{+\infty} \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}} dx =  \int_{0}^{+\infty} \frac{1}{\sqrt{2\pi}}e^{-\frac{u^2}{2}} du \\
+			=  \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{2} \int_{-\infty}^{+\infty} e^{-\frac{u^2}{2}} du
+			=  \frac{1}{2}\quad \text{par la formule dans l'énoncé.}
+		\end{dmath}
+	
+		Donc, $\int_{-\infty}^{+\infty} p(x) dx = 1$.
+		
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q2}} Calculer la valeur moyenne $\langle x \rangle$.
+		\end{tcolorbox}
+	
+		On utilise la même substitution $u = \frac{x - x_0}{\sigma} \implies dx = \sigma \cdot du$.
+		
+		\begin{dmath}
+			\langle x \rangle = \int_{-\infty}^{+\infty} xp(x) dx \\ 
+			= \int_{-\infty}^{+\infty} \frac{x}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}} dx \\
+			= \int_{-\infty}^{+\infty} \frac{\sigma u + x_0}{\sqrt{2\pi}}e^{-\frac{u^2}{2}} du \\
+			= \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} ue^{-\frac{u^2}{2}} du + \frac{x_0}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e^{-\frac{u^2}{2}} du \\
+			= x_0.
+		\end{dmath}
+	
+		
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q3}} Calculer l'écart quadratique moyenne $\Delta x$.
+		\end{tcolorbox}
+	
+		On utilise encore la même substitution $u = \frac{x - x_0}{\sigma} \implies dx = \sigma \cdot du$.
+		
+		\begin{dmath}
+			\langle x^2 \rangle = \int_{-\infty}^{+\infty} x^2p(x) dx \\ 
+			= \int_{-\infty}^{+\infty} \frac{x^2}{\sigma \sqrt{2\pi}}e^{-\frac{(x-x_0)^2}{2\sigma^2}} dx \\
+			= \int_{-\infty}^{+\infty} \frac{(\sigma u + x_0)^2}{\sqrt{2\pi}}e^{-u^2}{2} du \\
+			= \frac{\sigma^2}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} u^2e^{-u^2}{2} du + \frac{2\sigma x_0}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} ue^{-u^2}{2} du + \frac{x_0^2}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{-u^2}{2} du\\
+			= \frac{\sigma^2}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} u^2e^{-u^2}{2} du + x_0^2.
+		\end{dmath}
+	
+		Par integration par parties,
+		
+		\begin{equation}
+			\int_{-\infty}^{+\infty} u^2e^{-u^2}{2} du = -ue^{-\frac{u^2}{2}}\bigg\rvert_{u \to -\infty}^{u \to +\infty} + \int_{-\infty}^{+\infty} e^{-\frac{u^2}{2}} du = \sqrt{2\pi}.
+		\end{equation}
+		
+		Donc, $\langle x^2 \rangle = x_0^2 + \sigma^2$. Alors,
+		
+		\begin{dmath}
+			\Delta x^2 = \langle x^2 \rangle - \langle x \rangle^2\\
+			= x_0^2 + \sigma^2 - x_0^2\\
+			=\sigma^2.
+		\end{dmath}
+	
+		On en déduit, $\Delta x = \sigma$.
+		
+	}
+
+	\newpage
+	
+	\subsection*{Exercice 3: L'expérience des fentes de Young}
+	\textbf{On supposera que les ondes de matière diffractées par chaque fente sont de la forme $\psi(M) \propto e^{\frac{ip_0r}{h}}$ sur l'écran.
+	}
+	\vspace{.3cm}
+	\hrule
+	\vspace{.3cm}
+	{%SOLUTION
+		
+		\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+			\textbf{\large{Q1}} Notons $r_1$ et $r_2$ les distances entre l'écran et les fentes $S1$ et $S2$. Montrer que $r_{1,2} = \sqrt{(x \pm a/2)^2 + D^2}$ et donner une expression simplifiée de $r_1 - r_2$ en fonction de $x$ en utilisant l'hypothèse $D \gg a$.
+		\end{tcolorbox}
+	
+		Par le théorème de Pythagore,
+		
+		\begin{equation}
+			\left( \frac{a}{2} \pm x \right)^2 + D^2 = r_{1,2}^2.
+		\end{equation}
+		
+		Alors,
+		
+		\begin{equation}
+			|r_1 - r_2| = \sqrt{\left(\frac{a}{2} + x\right)^2 + D^2} - \sqrt{\left(\frac{a}{2} - x\right)^2 + D^2} 
+		\end{equation}
+	
+	}
+	
+\end{document}

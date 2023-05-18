@@ -1,0 +1,142 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\begin{document}
+	\title{DM1: Une preuve du théorème d'Ascoli}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q1}} Montrer que si $(Y,d)$ est un espace métrique compact et $(E,||\cdot||)$ un espace de Banach, alors, $\mathcal{C}(Y;E)$ l'espace des fonctions continues de Y dans E, muni de la norme de la convergence uniforme $||f||_{\infty} = \sup_{x \in Y} ||f(x)||$, est un espace de Banach.
+	\end{tcolorbox}
+
+	Soit $(f_n)_{n \geq 0}$ une suite de Cauchy d'éléments de $\mathcal{C}(Y;E)$. On veut montrer que $(f_n)_{n \geq 0}$ est convergente.
+	
+	Par définition, \[ \forall \epsilon > 0 \quad \exists n_0 \in \mathbb{N} \quad \text{tel que} \quad  \forall n,m \geq n_0 \quad ||f_n - f_m||_{\infty} < \epsilon.\]
+	
+	Donc,	
+	\begin{dmath*}
+		\forall x \in Y \quad ||f_n(x) - f_m(x)|| < \epsilon \\ \iff  \text{$(f_n(x))_{n \geq 0}$ est une suite de Cauchy dans $(E, ||\cdot||)$ qui est un espace métrique complet} \\ \iff \text{$(f_n(x))_{n \geq 0}$ converge vers une limite $z_x \in E$}.
+	\end{dmath*}
+	
+	Soit $z : Y \to E$ tel que $\forall x \in Y \quad z(x) = z_x$.
+	
+	On note que \[\forall x \in Y \lim_{m \to +\infty} ||f_n(x) - f_m(x)|| = ||f_n(x) - z(x)|| < \epsilon.\]
+	
+	Ce qui implique $||f_n - z||_{\infty} < \epsilon  \quad \forall n \geq n_0$. Donc, $(f_n)_{n \geq 0}$ converge uniformemet vers $z$.
+	
+	On note que $z \in \mathcal{C}(Y;E)$, parce que $(f_n)_{n \geq 0}$ est continue.
+	
+	\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black]
+		\textbf{Remarque} On note que la convergence uniforme est essentiel pour concluire. Par exemple, soit 
+		\[f_n(x) = \arctan(nx).\]
+		La limite de cette suite est 
+		\begin{equation}
+			z(x) = 
+			\begin{cases}
+				-\frac{\pi}{2} \quad \text{si $x < 0$}\\
+				+\frac{\pi}{2} \quad \text{si $x > 0$},
+			\end{cases}
+		\end{equation}
+		qui est donc discontinue en $x = 0$.
+	\end{tcolorbox}
+	 
+	 \newpage
+	 
+	 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black]
+	 	\textbf{\large{Définition}} Un espace métrique $(X,d)$ est dit \textbf{précompact} si pour tout $\epsilon > 0$, il existe des élements $x_1, ..., x_N$ de $X$ tels que $X \subset \cup_{i=1}^{N} B(x_i, \epsilon)$.
+	 \end{tcolorbox}
+ 
+ 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+ 		\textbf{\large{Q2}} Montrer que $[0,1]$ est précompact dans $\mathbb{R}$.
+ 	\end{tcolorbox}
+ 
+	$\forall \epsilon > 0$ on veut montrer qu'il existe des éléments $ x_0, x_1, ..., x_N \in [0,1] \quad N \in \mathbb{N} \text{  tels que  } [0,1] \subset \cup_{i=0}^{N} B(x_i, \epsilon)$.
+	
+	Pour $\epsilon > \frac{1}{2}$ on note que $X \subset B(\frac{1}{2}, \epsilon)$.
+	
+	Supposons $\epsilon \leq \frac{1}{2}$. Soit $N = \lfloor \frac{1}{\epsilon} \rfloor$, posons $\forall i, x_i = i\epsilon$.
+	
+	On note que $\forall x \in [0, 1], x \in B( x_{\lfloor \frac{x}{\epsilon} \rfloor},\epsilon)$. Donc, $[0,1] \subset \cup_{i=0}^{N} B(x_i, \epsilon)$. 
+
+ 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+ 		\textbf{\large{Q3}} Montrer que tout sous-ensemble borné de $\mathbb{R}^N$ est précompact.
+ 	\end{tcolorbox}
+ 
+ 	Soit $A$ un sous-ensemble borné de $\mathbb{R}^N$. Supposons, par absurde, que $A$ n'est pas précompact.
+ 	
+ 	Donc, il existe $r>0$ tel que il n'existe pas de recouvrement fini de $A$ par des boules ouvertes de rayon $r$
+ 	
+ 	$\implies $ cette recouvrement ne peut pas être dans une boule de rayon fini
+ 	
+ 	$\implies A$ n'est pas borné.
+	
+ 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+ 		\textbf{\large{Q4}} Montrer qu'un espace compact est précompact.
+ 	\end{tcolorbox}
+ 
+ 	Soit $(X,d)$ un espace métrique compact. Supposons, par absurde, que $(X,d)$ n'est pas précompact.
+ 	
+ 	Donc, il existe $r>0$ tel que il n'existe pas de recouvrement fini de $X$ par des boules ouvertes de rayon $r$.
+ 	
+ 	Donc, par récurrence, on peut construire une suite $(x_n)_{n \geq 0}$ tel que $x_m \notin B(x_n, r) \implies d(x_n, x_m) \geq r \quad \forall n \neq m$. On note que $(x_n)_{n \geq 0}$ n'a pas de valeur d'adhérence. Donc, $X$ n'est pas compact.
+ 
+ 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+ 		\textbf{\large{Q5}} Soit $(X,d)$ un espace métrique et $Z \subset X$ précompact. Montrer que $\bar{Z}$ l'adhérence de $Z$ est précompacte.
+ 	\end{tcolorbox}
+ 
+ 	
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q6}} Montrer que $(X,d)$ est compact si et seulement s'il est complet et précompact.
+	\end{tcolorbox}
+
+	Supposons $(X,d)$ compact. Soit $(x_n)_{n \geq 0}$ une suite de Cauchy dans $(X,d)$. $(X,d)$ compact implique que  $(x_n)_{n \geq 0}$ admet un valeur d'adhérence, donc $(x_n)_{n \geq 0}$ est convergente et $(X,d)$ complet.
+	
+	Réciproquement, supposons $(X,d)$ complet et précompact.
+	
+	Soit $(x_n)_{n \geq 0}$ une suite dans $(X,d)$. On veut montrer que $(x_n)_{n \geq 0}$ a un valeur d'adhérence.
+	
+	$(X,d)$ précompact $\implies$ par le Principe de Dirichlet que $\forall \epsilon > 0$ il existe une sous-suite $(x_{\phi(n)})_{n \geq 0}$ dans une boule ouvert de rayon $\epsilon$. Donc, $\forall n,m \quad d(x_n, x_m) < \epsilon$. Donc, $(x_{\phi(n)})_{n \geq 0}$ est une suite de Cauchy. $(X,d)$ complet implique que $(x_{\phi(n)})_{n \geq 0}$ converge $\implies \quad (x_n)_{n \geq 0}$ a un valeur d'adhérence.
+
+	\newpage
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q7}} 
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q8}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q9}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q10}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q11}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q12}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q13}} 
+	\end{tcolorbox}
+	
+\end{document}
