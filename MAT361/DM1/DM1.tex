@@ -198,6 +198,18 @@
 		\textbf{\large{Q12}} Montrer que $\mathcal{F} \subset \cup_{j=1}^{M} B(f_j, \epsilon)$. En déduire que $\mathcal{F}$ est précompact.
 	\end{tcolorbox}
 
+	Soit $f \in \mathcal{F}$, on veut montrer que $\min_{i\in[1,N]} ||f - f_j||_{\infty} < \epsilon$.
+	
+	$||f - f_j||_{\infty} = \sup_{y \in Y} |f(y) - f_j(y)| \implies $ on cherche une borne pour tout $y$.
+	
+	On sait que $Y = \cup_{i=1}^{N} B_Y(y_i, \delta) \implies \forall f \in \mathcal{F}, f(Y) = f\left(\cup_{i=1}^N B_Y(y_i, \delta)\right) \subset \cup_{i=1}^N f(B_Y(y_i, \delta)) \subset \cup_{i=1}^N B(f(y_i), \frac{\epsilon}{3})$.
+	
+	Soit $y \in Y$. Prenons $y_i$ tel que $f(y)$ est dans la boule $B(f(y_i), \frac{\epsilon}{3})$ et prenons $f_j$ tel que $f(y_1,...,y_i,...,y_N)$ est dans la boule $B(f_j(y_1,...,y_N), \frac{\epsilon}{3})$.
+	
+	Par l'inégalité triangulaire,
+	
+	\[ |f(y) - f_j(y)| < |f(y) - f(y_i)| + |f(y_i) - f_j(y_i)| + |f_j(y_i) - f_j(y)| < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon\]
+	
 	
 	
 \end{document}
