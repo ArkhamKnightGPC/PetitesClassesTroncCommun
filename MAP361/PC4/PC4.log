@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2023.1.28)  9 MAY 2023 18:02
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2023.1.28)  24 MAY 2023 22:22
  restricted system commands enabled.
 **PC4.tex
 (./PC4.tex
@@ -898,9 +898,9 @@ $[] \OT1/lmr/m/n/10 = [][] \OML/lmm/m/it/10 f[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/1
 Here is how much of LuaTeX's memory you used:
  15187 strings out of 481365
  100000,662416 words of node,token memory allocated
- 23015 words of node memory still in use:
+ 23022 words of node memory still in use:
    26 hlist, 4 vlist, 5 rule, 1 local_par, 2 math, 18 glue, 11 kern, 7 penalty, 
-2749 glyph, 1208 attribute, 67 glue_spec, 202 attribute_list, 2 write, 2 pdf_col
+2750 glyph, 1208 attribute, 67 glue_spec, 202 attribute_list, 2 write, 2 pdf_col
 orstack nodes
    avail lists: 1:2,2:1483,3:239,4:14,5:178,6:22,7:985,8:60,9:289,10:9,11:60
  31661 multiletter control sequences out of 65536+600000
@@ -921,7 +921,7 @@ exmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 ic/lm/lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on PC4.pdf (3 pages, 205393 bytes).
+Output written on PC4.pdf (3 pages, 205381 bytes).
 
 PDF statistics: 92 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream

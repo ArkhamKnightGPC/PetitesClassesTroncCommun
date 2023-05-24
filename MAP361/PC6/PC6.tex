@@ -1,0 +1,154 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}  % This package allows the importing of images
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\begin{document}
+	
+\title{PC 6: Convergence \& Loi des grands nombres}
+\date{Dernière modification \today}
+
+\maketitle
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+	\textbf{\large{Rappels}}
+	\begin{itemize}
+		\item Convergence en probabilité
+		\[X_n \xrightarrow{\mathbb{P}} X \iff \forall \epsilon > 0 \lim_{n \to +\infty} \mathbb{P}(|X_n - X| > \epsilon) = 0\]
+		\item Convergence em moyenne
+		\[X_n \xrightarrow{L^1} X \iff  \lim_{n \to +\infty} \mathbb{E}(|X_n - X|) = 0\]
+		\item Convergence presque-sûrement
+		\[X_n \xrightarrow{\text{p.s}} X \iff  \mathbb{P}\left(\{\omega : \lim_{n \to +\infty} X_n(\omega) = X(\omega)\}\right) = 1\]
+		\item Théorème de convergence dominée
+		\[\text{Si } X_n \xrightarrow{\text{p.s}} X \text{ et } \exists Z \text{ v.a réele tel que } \forall n, |X_n| \leq |Z| \text{ p.s. Alors, } X_n \xrightarrow{L^1} X\]
+		\item Loi des grands nombres
+		Soit $(X_n)_{n \geq 0}$ i.i.d $\in L^1$.
+		\[\frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{\text{p.s}} \mathbb{E}(X_1)\]
+		\item Lemme de Borel-Cantelli
+		\begin{itemize}
+			\item Si la série $\sum_n \mathbb{P}(A_n) < +\infty$, alors $\mathbb{P}(\lim \sup A_n) = 0$. C'est à dire, p.s il y a un nombre fini de $A_n$ qui sont réalisés.
+			\item Si de plus la suite $(A_n)_n$ est indépendante, alors $\sum_{n} \mathbb{P}(A_n) = +\infty \implies \mathbb{P}(\lim \sup A_n) = 1$. C'est à dire, p.s une infinité de $A_n$ sont réalisés.
+		\end{itemize}
+	\end{itemize}
+\end{tcolorbox}
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+	\textbf{\large{Q1}} Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires de loi Bernoulli, $X_n \sim \mathcal{B}(p_n)$ avec $p_n \to 0$. 
+	\begin{enumerate}
+		\item Montrer que $X_n \xrightarrow{\mathbb{P}} 0$ et $X_n \xrightarrow{\mathbb{L}^1} 0$.
+		\item On suppose que $\sum_{n} p_n < \infty$. Montrer que $X_n \xrightarrow{p.s} 0$.
+		\item On suppose que $X_n \xrightarrow{p.s} 0$. Montrer qu'on n'a pas nécessairement $\sum_{n}p_n < \infty$.
+		\item On suppose maintenant que $\sum_{n}p_n = \infty$ et que les variables $(X_n)_{n \geq 1}$ sont indépendantes. Montrer que $X_n \not\to X$ p.s.
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{enumerate}
+	
+\item
+\[\forall \epsilon>0 \quad \mathbb{P}(|X_n - 0| > \epsilon) = \mathbb{P}(X_n = 1) = p_n \to 0\]
+donc, $X_n \xrightarrow{\mathbb{P}} 0$.
+
+\[\mathbb{E}(|X_n - 0|) = \mathbb{E}(X_n) = p_n \to 0\]
+donc, $X_n \xrightarrow{L^1} 0$.
+
+\item
+Par le lemme de Borel-Cantelli $\sum_n p_n < +\infty \implies \mathbb{P}(\lim \sup \{X_n = 1\})$. Donc, il y a un nombre fini de $X_i = 1 \implies X_n \xrightarrow{p.s} 0$.
+
+\[\mathbb{P}\left(\{\omega : \lim_{n \to +\infty} X_n(\omega) \neq X(\omega)\}\right) = \mathbb{P}(\lim \sup \{X_n = 1\}) = 0\]
+
+\item
+Soit $U$ une v.a réele de loi uniforme $U \sim \mathcal{U}[0,1]$.
+Prenons $X_n = \mathfrak{1}_{[0, \frac{1}{n}]}(U)$. On note $X_n \sim \mathbb{B}(\frac{1}{n})$.
+\[\sum_{n} p_n = \sum_n \frac{1}{n} = +\infty\]
+$X_n(\omega) = \mathfrak{1}_{[0, \frac{1}{n}]}(U(\omega)) = 0 \forall n \geq n_0 \implies X_n \xrightarrow{p.s} 0$.
+
+\item
+Par le lemme de Borel-Cantelli $\sum_{n} p_n = +\infty$ et la suite $(X_n)_n$ est indépendante, alors $\mathbb{P}(\lim \sup A_n) = 1$. Donc, on a une infinitude de $X_i =1 \implies X_n \xrightarrow{p.s} 1$.
+
+\end{enumerate}
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+	\textbf{\large{Q4}}  Montrer qu'une suite $(X_n)_{n \in \mathbb{N}}$ de variables aléatoires converge presque sûrement vers une variable aléatoire $X$ si et seulement si $M_n = \sup_{k \geq n} |X_k - X|$ converge vers $0$ en probabilité.
+\end{tcolorbox}
+
+Supposons que $X_n \xrightarrow{p.s} X \implies M_n \xrightarrow{p.s} 0 \implies M_n \xrightarrow{\mathbb{P}} 0$.
+
+Réciproquement, supposons que $M_n \xrightarrow{\mathbb{P}} 0$.
+\begin{align*}
+	\iff \forall \epsilon > 0 \lim\limits_{n \to +\infty} \mathbb{P}(|M_n - 0| > \epsilon) &= 0 \\
+	&= \mathbb{P}(M_n > \epsilon)\\
+	&= \mathbb{P}(\sup_{k \geq n} |X_k - X| > \epsilon)\\
+	&= \mathbb{P}(\cup_{k \geq n} \{|X_k - X | > \epsilon\})\\
+	\iff \forall \epsilon > 0 \quad \mathbb{P}(\cap_{n \geq 1} \cup_{k \geq n} \{|X_k - X| > \epsilon\}) = 0
+\end{align*}
+
+En particulier, soit $B = \cup_{m \in \mathbb{N}} \cap_{n \geq 1} \cup_{k \geq n} \{|X_k - X| > \frac{1}{m}\}$ on a
+
+\[\mathbb{P}\left(\cup_{m \in \mathbb{N}} \cap_{n \geq 1} \cup_{k \geq n} \{|X_k - X| > \frac{1}{m}\}\right) = 0.\]
+
+$\mathbb{P}(\lim X_n \neq X) \leq \mathbb{P}(B) = 0 \implies X_n \xrightarrow{\text{p.s}} X$.
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+	\textbf{\large{Q6}} Soit $g: \mathbb{R} \to \mathbb{R}$ une fonction continue bornée et $\lambda > 0$. Déterminer
+	\begin{enumerate}
+		\item
+		\[\lim_{n \to \infty} \int_{[0,1]^n} g\left(\frac{x_1+...+x_n}{n}\right)dx_1...dx_n\]
+		\item
+		\[\lim_{n \to \infty} \sum_{k=0}^{+\infty} e^{-\lambda n} \frac{(\lambda n)^k}{k!}g\left(\frac{k}{n}\right)\]
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{enumerate}
+	\item Soit $X_i \sim \mathcal{U}[0,1]$ indépendantes.
+	\begin{align}
+		\lim_{n \to \infty} \int_{[0,1]^n} g\left(\frac{x_1+...+x_n}{n}\right)dx_1...dx_n &= \int_{[0,1]^n} g(\frac{1}{n} \sum_{i=1}^{n}X_i) dx_1...dx_n\\
+		&= \mathbb{E}(g(\bar{X_n}))\\
+		&\xrightarrow{\text{p.s}} \mathbb{E}(g(\mathbb{E}(X_i)))  \text{ par la loi des grands nombres. }\\
+		&= g\left(\frac{1}{2}\right)
+	\end{align}
+	
+	\item Soit $Y_n \sim \mathcal{P}(\lambda k)$.
+	\begin{align}
+		\lim_{n \to \infty} \sum_{k=0}^{+\infty} e^{-\lambda n} \frac{(\lambda n)^k}{k!}g\left(\frac{k}{n}\right) &= \mathbb{E}\left(g\left(\frac{Y_n}{n}\right)\right)\\
+		&= \mathbb{E}(g(\bar{Z_n})) \text{ où $Z_i \sim \mathcal{P}(\lambda)$ indépendantes }\\
+		&\xrightarrow{\text{p.s}} g(\lambda) \text{ par la loi des grands nombres. }
+	\end{align}
+	
+\end{enumerate}
+
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+	\textbf{\large{Q9}}  On considère une particule se déplaçant sur l'axe réel, et on note $X_n$ sa position à l'instant $n \in \mathbb{N}$. On suppose que $X_0$ est une v.a réelle et que la position de la particule évolue de la manière suivante
+	\[X_{n+1} = X_{n} + \epsilon_{n+1} \quad \forall n \in \mathbb{N},\]
+	où $(\epsilon_n)_{n \geq 1}$ est une suite de v.a.r i.i.d intégrables et de moyenne $m \neq 0$.
+	Montrer que $\lim_{n\to\infty}|X_n| = +\infty$ p.s.
+\end{tcolorbox}
+
+Par récurrence $X_n = X_0 + \sum_{i=1}^{n} \epsilon_n$.
+
+Par la loi des grands nombres,
+\[\iff \frac{1}{n}X_n = \frac{1}{n}X_0 + \frac{1}{n}\sum_{i=1}^{n} \xrightarrow{\text{p.s}} \mathbb{\epsilon_1} = m \neq 0.\]
+
+Donc $X \approx nm$ pour $n$ grand $\implies |X_n| \xrightarrow{\text{p.s}} +\infty$.
+
+\end{document}
