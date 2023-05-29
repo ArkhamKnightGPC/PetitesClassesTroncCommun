@@ -1,0 +1,150 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\begin{document}
+	\title{DM1: Oscillations d'atomes piégés dans un potentiel parabolique}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\section{Mesure par vol libre de la densité de probabilité de l'impulsion}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q1}} Rappeler sans démonstration l'expression des niveaux d'énergie du système.
+	\end{tcolorbox}
+
+	Les niveaux d'énergie de l'oscillateur harmonique à une dimension sont
+	
+	\[E_n = \left(n + \frac{1}{2}\right)\hbar \omega\]
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q2}} Compte tenu de la valeur numérique de $a_0$, pensez-vous qu'il soit possible de résoudre l'extension spatiale de l'etat fondamental à l'aide d'un microscope optique utilisant la lumière visible ?
+	\end{tcolorbox}
+
+	\begin{align}
+		a_0 &= \sqrt{\frac{\hbar}{m \omega}}\\
+		&= \sqrt{\frac{1,055 \cdot 10^{-34} \text{Js}}{(2,2 \cdot 10^{-25} \text{kg}) \cdot (5,718 \cdot 10^5 \text{rad/s})}}\\
+		&= 2,9 \cdot 10^{-8} \text{m}
+	\end{align}
+	
+	Sachant que la résolution d'un microscope optique est $0,2 \text{\mu m} \implies$ ce n'est pas possible de résoudre l'extension spatiale de l'état fondamental $a_0 \approx 0,03 \text{\mu m}$.
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q3}} Au lieu de mesurer la densité de probabilité de la position, on choisit de mesurer la densité de probabilité de l'impulsion, $|\phi (p, t_0)|^2$, à un instant $t_0$ donné. Pour cela, on éteint brusquement le laser de piégeage à l'instant $t_0$, de sorte que les atomes se comportent comme un paquet d'ondes libre pour $t > t_0$. On rappelle que dans ce cas, pour $t - t_0$ suffisamment grand, on a 
+		\[|\psi (x,t)|^2 \propto \left| \phi \left(\frac{mx}{t - t_0}, t_0\right) \right|^2\]
+		(méthode dite du \textit{temps de vol} ou du \textit{vol libre}). L'image obtenue reflète ainsi la densité de probabilité de l'impulsion $|\phi (p, t_0)|^2$ à l'instant $t_0$ où le laser de piégeage a été coupé.
+		Commenter la figure 1(a), obtenue de cette manière lorque $|\psi (t_0) \rangle = |0\rangle$, et estimer un \textit{ordre de grandeur} du temps de vol choisit, $T_v = t - t_0$.
+	\end{tcolorbox}
+
+	On note que la distribution est une gaussienne comme attendu pour l'état fondamental $|0\rangle$ avec écart-type $\sigma \approx 100 \text{\mu m}$.
+	
+	Pour estimer le temps de vol, on utilise la relation
+		
+	\[\Delta v_0 = \frac{\Delta x(T_v)}{T_v}\]
+	
+	On note que
+	
+	\begin{align}
+		\begin{cases}
+		\Delta v_0 &= \frac{\Delta p_0}{m} = \frac{1}{m} \cdot \frac{\hbar}{a_0} = 1,65 \cdot 10^{-2} \text{m/s}\\
+		\Delta x(T_v) &\approx 10^{-4} \text{m}
+		\end{cases}
+	\end{align}
+	
+	Donc, $T_v \approx 6 \text{ms}$ dans l'ordre de $10^{-3}$s.
+	
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q4}}On considère une fonction d'onde $\psi(x)$ ainsi que sa transformée de Fourier $\phi(p)$. Ecrire l'expression de $\hat{a}^\dag \psi(x)$ sous forme d'un opérateur différentiel, puis montrer que 
+		\[\hat{a}^\dag \phi(p) = \frac{-i}{\sqrt{2}} \left(\frac{a_0}{\hbar}p - \frac{\hbar}{a_0} \frac{d}{dp}\right)\phi(p).\]
+	\end{tcolorbox}
+
+	On veut calculer $\hat{a}^\dag$.
+	
+	\begin{align}
+		\hat{a}^\dag &= \frac{1}{\sqrt{2}} \left(\frac{\hat{x}}{a_0} + i\frac{a_0}{\hbar}\hat{p}\right)^\dag\\ 
+		&= \frac{1}{\sqrt{2}} \left(\frac{\hat{x}^\dag}{a_0} - i\frac{a_0}{\hbar}\hat{p}^\dag\right)\\
+		&= \frac{1}{\sqrt{2}} \left(\frac{\hat{x}}{a_0} - i\frac{a_0}{\hbar}\hat{p}\right)
+	\end{align}
+	
+	Donc, 
+	\begin{align}
+		\hat{a}^\dag \psi(x) &= \frac{1}{\sqrt{2}} \left(\frac{\hat{x}}{a_0} - i\frac{a_0}{\hbar}\hat{p}\right) \psi(x)\\
+		&= \frac{1}{\sqrt{2}} \left(\frac{x}{a_0} - a_0\frac{d}{dx}\right) \psi(x).
+	\end{align}
+	
+	Pour calculer $\hat{a}^\dag \phi(p)$, on applique la transformée de Fourier
+	
+	\begin{align}
+		\begin{cases}
+			x \psi(x) &\mapsto i\hbar \frac{d}{dp}\phi(p)\\
+			\frac{d}{dx} \psi(x) &\mapsto \frac{ip}{\hbar} \phi(p)
+		\end{cases}
+	\end{align}
+	
+	Donc,
+	\begin{align}
+		\hat{a}^\dag \phi(p) &= \frac{1}{\sqrt{2}} \left(\frac{i\hbar}{a_0}\frac{d}{dp} - a_0\frac{ip}{\hbar}\right) \phi(p)\\
+		&= \frac{-i}{\sqrt{2}} \left(-\frac{\hbar}{a_0}\frac{d}{dp} + \frac{a_0p}{\hbar}\right) \phi(p)
+	\end{align}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q5}}En déduire que l'on peut écrire $\phi_1(p) = \xi p \phi_0(p)$ où $\xi$ est un nombre complexe que l'on déterminera. 
+	\end{tcolorbox}
+
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q6}} Commenter la Figure 1(b).
+	\end{tcolorbox}
+
+	\section{Préparation du système dans le premier état excité}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q1}} Déterminer les états propres de $\hat{H_1} = \frac{\hbar \Omega}{2} \left(|1\rangle \langle 0| + |0\rangle \langle 1| \right)$  ainsi que les valeurs propres correspondantes.
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q2}}Décomposer l'état $|\psi(0)\rangle$ dans la base propre obtenue à la question précédente, puis en déduire pour $t > 0$ l'expression de $|\psi(t)\rangle$ dans cette même base.
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q3}} Ecrire  $|\psi(t)\rangle$ dans la base propre de $\hat{H_0}$.
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q4}}Calculer la probabilité $\mathcal{P}(t)$ qu'une mesure de $H_0$ effectué à l'instant $t$ donne le résultat $3\hbar \omega /2$, puis montrer que cette fonction est une fonction périodique dont on déterminera la période $T$. 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q5}} A quel instant faut-il interrompre l'application du second laser pour place le système dans l'état $|1\rangle$ (à une phase près) ? 
+	\end{tcolorbox}
+
+	\section{Préparation d'un état non stationnaire}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q1}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q2}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q3}} 
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q4}} 
+	\end{tcolorbox}
+	
+
+\end{document}
