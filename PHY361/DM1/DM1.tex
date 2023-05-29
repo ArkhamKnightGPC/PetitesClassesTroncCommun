@@ -133,30 +133,85 @@
 	\langle \hat{H_1} | \psi \rangle &= \frac{\hbar \Omega}{2} \left( \langle 0|\psi \rangle |1\rangle + \langle 1|\psi \rangle |0\rangle\right)\\
 	\end{align}
 	
-	Donc, $\frac{\hbar \Omega}{2} \left( \langle 0|\psi \rangle |1\rangle + \langle 1|\psi \rangle |0\rangle\right) = \lambda \psi(x)$
+	Donc, \[\frac{\hbar \Omega}{2} \left( \langle 0|\psi \rangle |1\rangle + \langle 1|\psi \rangle |0\rangle\right) = \lambda \psi(x)\]
 	
-	On note que $\psi(x) = a (\psi_0(x) + \psi_1(x))$ où $a \in \mathbb{C}$ est état propre parce que
+	On note que $\psi(x)$ doit être une combinaison lineaire de $|0\rangle$ et $|1\rangle$. Donc, \[\psi(x) = \lambda_0 \cdot \psi_0(x) + \lambda_1 \cdot \psi_1(x)\]
+	
+	Alors,
 	
 	\begin{align}
-		\langle \hat{H_1} | a\psi_0 + a\psi_1 \rangle &= \frac{\hbar \Omega}{2} \left( a |1\rangle + a |0\rangle\right)\\
-		&= \frac{\hbar \Omega}{2}\psi(x)
+		\begin{cases}
+		\lambda \lambda_0 \psi_0(x) &= \frac{\hbar \Omega}{2} \langle 1|\psi \rangle |0\rangle\\
+		\lambda \lambda_1 \psi_1(x) &= \frac{\hbar \Omega}{2} \langle 0|\psi \rangle |1\rangle
+		\end{cases}
+	\end{align}
+	
+	On note que $ \langle 0|\psi \rangle = \lambda_0$ et $ \langle 1|\psi \rangle = \lambda_1$ parce que $|0\rangle$ et $|1\rangle$ sont orthogonaux. Donc,
+	
+	\begin{align}
+	\begin{cases}
+	\lambda \lambda_0 &= \frac{\hbar \Omega}{2} \lambda_1\\
+	\lambda \lambda_1 &= \frac{\hbar \Omega}{2} \lambda_0
+	\end{cases}
+	\end{align}
+	
+	En divisant les deux équation on a $\lambda_0^2 = \lambda_1^2$.
+	
+	\begin{align}
+		\begin{cases}
+		\lambda_0 = \lambda_1 \iff \lambda = \frac{\hbar \Omega}{2}\\
+		\lambda_0 = -\lambda_1 \iff  \lambda = \frac{\hbar \Omega}{2}
+		\end{cases}
+	\end{align}
+	
+	Donc, les états propres sont 
+	\begin{align}
+		\psi(x) &= c(\psi_0(x) + \psi_1(x)) \text{où $c \in \mathbb{C}$ avec valeur propre } \frac{\hbar \Omega}{2}\\
+		\psi(x) &= c(\psi_0(x) - \psi_1(x)) \text{où $c \in \mathbb{C}$ avec valeur propre } -\frac{\hbar \Omega}{2}
 	\end{align}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q2}}Décomposer l'état $|\psi(0)\rangle$ dans la base propre obtenue à la question précédente, puis en déduire pour $t > 0$ l'expression de $|\psi(t)\rangle$ dans cette même base.
+		\textbf{\large{Q2}} Décomposer l'état $|\psi(0)\rangle$ dans la base propre obtenue à la question précédente, puis en déduire pour $t > 0$ l'expression de $|\psi(t)\rangle$ dans cette même base.
 	\end{tcolorbox}
+
+	On utilise la base orthonormale $\left\{ \frac{|0\rangle + |1\rangle}{\sqrt{2}} ,\frac{|0\rangle - |1\rangle}{\sqrt{2}}  \right\}$.
+	
+	\[|\psi(0)\rangle = |0\rangle = \frac{1}{\sqrt{2}}\left(\frac{|0\rangle + |1\rangle}{\sqrt{2}}\right) + \frac{1}{\sqrt{2}}\left(\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right) \]
+	
+	On utilise $\psi(x,t) = \psi(x,t=0) \cdot e^{-\frac{i\lambda}{\hbar}t}$ où $\lambda$ est le valeur propre correspondant.
+	
+	\[|\psi(t)\rangle = \frac{e^{-i \frac{\Omega}{2} t}}{\sqrt{2}}\left(\frac{|0\rangle + |1\rangle}{\sqrt{2}}\right) + \frac{e^{+i \frac{\Omega}{2} t}}{\sqrt{2}}\left(\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right)\]
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q3}} Ecrire  $|\psi(t)\rangle$ dans la base propre de $\hat{H_0}$.
 	\end{tcolorbox}
 
-	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q4}}Calculer la probabilité $\mathcal{P}(t)$ qu'une mesure de $H_0$ effectué à l'instant $t$ donne le résultat $3\hbar \omega /2$, puis montrer que cette fonction est une fonction périodique dont on déterminera la période $T$. 
-	\end{tcolorbox}
+	Dans la base $\{ |0\rangle, |1\rangle\}$
+	
+	\begin{align}
+	|\psi(t)\rangle &= \left(\frac{e^{-i \frac{\Omega}{2} t} +e^{+i \frac{\Omega}{2} t} }{2}\right) |0\rangle + \left(\frac{e^{-i \frac{\Omega}{2} t} - e^{+i \frac{\Omega}{2} t} }{2}\right) |1\rangle\\
+	&= \cos\left(\frac{\Omega t}{2}\right)|0\rangle + i \sin\left(\frac{\Omega t}{2}\right)|1\rangle
+	\end{align}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q5}} A quel instant faut-il interrompre l'application du second laser pour place le système dans l'état $|1\rangle$ (à une phase près) ? 
+		\textbf{\large{Q4}} Calculer la probabilité $\mathcal{P}(t)$ qu'une mesure de $H_0$ effectué à l'instant $t$ donne le résultat $3\hbar \omega /2$, puis montrer que cette fonction est une fonction périodique dont on déterminera la période $T$. 
 	\end{tcolorbox}
+
+	La mesure donne le résultat $\frac{3\hbar \omega}{2} \iff$ le système est dans l'état $|1\rangle$.
+	
+	\begin{align}
+		\mathcal{P}(t) &= \left|i \sin\left(\frac{\Omega t}{2}\right)\right|^2\\
+		&= \sin\left(\frac{\Omega t}{2}\right)^2\\
+		&= \frac{1 - cos\left(\Omega t\right)}{2}
+	\end{align}
+	
+	Donc, $\mathcal{P}(t)$ est périodique avec période $T = \frac{2\pi}{\Omega}$
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q5}} A quel instant faut-il interrompre l'application du second laser pour placer le système dans l'état $|1\rangle$ (à une phase près) ? 
+	\end{tcolorbox}
+
+	\[\mathcal{P}(t) = 1 \iff \cos(\Omega t) = -1 \iff t = \frac{\pi}{\Omega}\]
 
 	\section{Préparation d'un état non stationnaire}
 
