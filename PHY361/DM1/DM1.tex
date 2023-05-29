@@ -211,25 +211,68 @@
 		\textbf{\large{Q5}} A quel instant faut-il interrompre l'application du second laser pour placer le système dans l'état $|1\rangle$ (à une phase près) ? 
 	\end{tcolorbox}
 
-	\[\mathcal{P}(t) = 1 \iff \cos(\Omega t) = -1 \iff t = \frac{\pi}{\Omega}\]
+	\[\mathcal{P}(t) = 1 \iff \cos(\Omega t) = -1 \iff t = \frac{\pi}{\Omega} = \frac{T}{2}\]
 
 	\section{Préparation d'un état non stationnaire}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q1}} 
+		\textbf{\large{Q1}} Ecrire dans la base propre de $\hat{H_0}$ l'état du système à l'instant $t = T/4$, sachant que $|\psi(0)\rangle = |0\rangle$.
 	\end{tcolorbox}
 
-	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q2}} 
-	\end{tcolorbox}
+	On note $t = \frac{T}{4} = \frac{\pi}{2\Omega} \implies \frac{\Omega t}{2} = \frac{\pi}{4}$
+
+	\begin{align}
+	|\psi(\frac{T}{4})\rangle &= \cos\left(\frac{\pi}{4}\right)|0\rangle + i \sin\left(\frac{\pi}{4}\right)|1\rangle\\
+	&= \frac{|0\rangle}{\sqrt{2}} + i \frac{|1\rangle}{\sqrt{2}}
+	\end{align}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q3}} 
+		\textbf{\large{Q2}} En déduire l'expression de $|\psi(t = T/4 + \tau)\rangle$ pour $\tau > 0$.
 	\end{tcolorbox}
 
+	On note que $|0\rangle$ et $|1\rangle$ sont des états propres du hamiltonien $\hat{H_0}$ avec les valeurs propres $\frac{\hbar \omega}{2}$ et $\frac{3 \hbar \omega}{2}$. Donc,
+
+	\[|\psi(t = T/4 + \tau)\rangle = e^{-i\frac{\omega}{2}\tau}\frac{|0\rangle}{\sqrt{2}} + i e^{-i\frac{3\omega}{2}\tau}\frac{|1\rangle}{\sqrt{2}}\]
+
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{Q4}} 
+		\textbf{\large{Q3}} Exprimer la densité de probabilité $|\phi(p,t)|^2$ en fonction de $|\phi_0(p)|^2$.
 	\end{tcolorbox}
+
+	On applique la transformée de Fourier
+	
+	\[\phi(t = \frac{T}{4}+\tau) = e^{-i\frac{\omega}{2}\tau}\frac{\phi_0(p)}{\sqrt{2}} + i e^{-i\frac{3\omega}{2}\tau}\frac{\phi_1(p)}{\sqrt{2}}\]
+	
+	Donc,
+	\begin{align}
+		|\phi(p, t)|^2 &= \frac{1}{2}\left|\phi_0(p) + ie^{-i\omega\tau}\phi_1(p)\right|^2\\
+		&= \frac{1}{2}\left|1 + i\xi pe^{-i\omega\tau}\right|^2 |\phi_0(p)|^2
+	\end{align}
+	
+	Avec $\xi = -\frac{\sqrt{2}ia_0}{\hbar}$, on note que
+	
+	\begin{align}
+		\left|1 + i\xi pe^{-i\omega\tau}\right|^2 &= \left|  1 + \frac{\sqrt{2}a_0}{\hbar}pe^{-i\omega\tau} \right|^2\\
+		&= \left|  1 + \frac{\sqrt{2}a_0}{\hbar}p\cos(\omega \tau) - i\frac{\sqrt{2}a_0}{\hbar}p\sin(\omega \tau) \right|^2\\
+		&= 1 + \frac{2\sqrt{2}a_0}{\hbar}p\cos(\omega \tau) + \frac{2a_0^2}{\hbar^2}p^2\cos^2(\omega \tau) +  \frac{2a_0^2}{\hbar^2}p^2\sin^2(\omega \tau)\\
+		&= 1 + \frac{2a_0^2}{\hbar^2}p^2 + \frac{2\sqrt{2}a_0}{\hbar}p\cos(\omega \tau)
+	\end{align}
+	
+	Donc, 
+	\begin{align}
+	|\phi(p, t)|^2 &= \left(\frac{1}{2} + \frac{a_0^2}{\hbar^2}p^2 + \frac{\sqrt{2}a_0}{\hbar}p\cos(\omega \tau)\right) |\phi_0(p)|^2
+	\end{align}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Q4}} La figure 2 répresente la densité de probabilité obtenue par la méthode du vol libre pour différentes valeurs du temps d'évolution $\tau = q \tau_0$, où $q$ est un entier. Justifier qualitativement la forme de ces courbes puis déterminer la valeur de $\tau_0$.
+	\end{tcolorbox}
+
+	On sait que $phi(p, t)|^2 = \frac{1}{2}\left|\phi_0(p) + ie^{-i\omega\tau}\phi_1(p)\right|^2$.
+	
+	Donc, conforme $\tau$ varie, les coefficients de la superposition entre $|0\rangle$ et $|1\rangle$ changent périodiquement. C'est pourquoi on voit la courbe c'est se déplacer à droite et après à gauche périodiquement.
+	
+	On note que le période est $7\tau_0$. Donc,
+	
+	\[\frac{2\pi}{\omega} = 7\tau_0 \iff \tau_0 = 1,57 \cdot 10^{-6}s\] 
 	
 
 \end{document}
