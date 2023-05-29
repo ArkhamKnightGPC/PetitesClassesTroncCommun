@@ -127,6 +127,21 @@
 		\textbf{\large{Q1}} Déterminer les états propres de $\hat{H_1} = \frac{\hbar \Omega}{2} \left(|1\rangle \langle 0| + |0\rangle \langle 1| \right)$  ainsi que les valeurs propres correspondantes.
 	\end{tcolorbox}
 
+	On veut résoudre $\langle \hat{H_1} | \psi \rangle = \lambda \psi(x)$
+	
+	\begin{align}
+	\langle \hat{H_1} | \psi \rangle &= \frac{\hbar \Omega}{2} \left( \langle 0|\psi \rangle |1\rangle + \langle 1|\psi \rangle |0\rangle\right)\\
+	\end{align}
+	
+	Donc, $\frac{\hbar \Omega}{2} \left( \langle 0|\psi \rangle |1\rangle + \langle 1|\psi \rangle |0\rangle\right) = \lambda \psi(x)$
+	
+	On note que $\psi(x) = a (\psi_0(x) + \psi_1(x))$ où $a \in \mathbb{C}$ est état propre parce que
+	
+	\begin{align}
+		\langle \hat{H_1} | a\psi_0 + a\psi_1 \rangle &= \frac{\hbar \Omega}{2} \left( a |1\rangle + a |0\rangle\right)\\
+		&= \frac{\hbar \Omega}{2}\psi(x)
+	\end{align}
+
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q2}}Décomposer l'état $|\psi(0)\rangle$ dans la base propre obtenue à la question précédente, puis en déduire pour $t > 0$ l'expression de $|\psi(t)\rangle$ dans cette même base.
 	\end{tcolorbox}
