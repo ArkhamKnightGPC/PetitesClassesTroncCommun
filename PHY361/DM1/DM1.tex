@@ -101,10 +101,25 @@
 		\textbf{\large{Q5}}En déduire que l'on peut écrire $\phi_1(p) = \xi p \phi_0(p)$ où $\xi$ est un nombre complexe que l'on déterminera. 
 	\end{tcolorbox}
 
+	On utilise la relation $\hat{a}^\dag |n\rangle = \sqrt{n+1} |n+1\rangle$ avec $n = 0$.
+	
+	\begin{align}
+		\phi_1(p) &= \hat{a}^\dag \phi_0(p)\\
+		&= \frac{-i}{\sqrt{2}} \left(\frac{a_0p}{\hbar} -\frac{\hbar}{a_0}\frac{d}{dp}\right) \phi_0(p)\\
+		&= \left(\frac{-i}{\sqrt{2}}\right)\left(\frac{a_0p}{\hbar} - \frac{\hbar}{a_0}\left(-\frac{a_0^2p}{\hbar^2}\right)\right)\left(\frac{a_0^2}{\pi \hbar^2}\right)^{\frac{1}{4}}\text{exp}\left(-\frac{a_0^2p^2}{2\hbar^2}\right)\\
+		&=\left(\frac{-i}{\sqrt{2}}\right) \frac{2a_0p}{\hbar}\left(\frac{a_0^2}{\pi \hbar^2}\right)^{\frac{1}{4}}\text{exp}\left(-\frac{a_0^2p^2}{2\hbar^2}\right)\\
+		&= \left(\frac{-i}{\sqrt{2}}\right) \frac{2a_0p}{\hbar}\phi_0(p)\\
+		&= \left(-\frac{\sqrt{2}ia_0}{\hbar}\right)p\phi_0(p)
+	\end{align}
+	
+	Donc, $\phi_1(p) = \xi p \phi_0(p)$ avec $\xi = -\frac{\sqrt{2}ia_0}{\hbar}$
+
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{Q6}} Commenter la Figure 1(b).
 	\end{tcolorbox}
+
+	La fonction d'onde $\psi_1(x)$ est proportionnel à la fonction d'Hermite $H_1(\frac{x}{a_0}) \implies $ la densité $|\psi_1(t)|^2$ est proportionnel à $H_1(\frac{x}{a_0})^2$. On observe dans la figure 1(b) la forme attendu avec $2$ nuages distinctes.
 
 	\section{Préparation du système dans le premier état excité}
 
