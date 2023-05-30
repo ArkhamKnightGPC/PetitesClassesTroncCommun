@@ -1,0 +1,135 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\begin{document}
+	\title{PC7: Convergence en loi \& Théorème central de limite}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+		\textbf{\large{Rappels}}
+		\begin{itemize}
+			\item Formulations de la convergence en loi
+			\begin{enumerate}
+				\item la suite $(X_n)_n$ converge en loi vers $X$, et nous écrivons $X_n \xrightarrow{\mathcal{L}} X$, si pour toute fonction $f$ continue bornée sur $\mathbb{R}^d$,
+				\[\mathbb{E}(f(X_n)) \xrightarrow{n \to +\infty} \mathbb{E}(f(X))\]
+				\item pour que $X_n \xrightarrow{\mathcal{L}} X$, il faut et il suffit que $F_n(x) \xrightarrow{n \to +\infty} F(x)$ pour tout $x$ en lequel $F$ est continue
+				\item \textbf{Théorème de Levy}: si les fonctions caracteristiques $\phi_{X_n}$ convergent simplement vers une fonction $\phi$ sur $\mathbb{R}^d$ et si cette fonction est continue en 0, alors c'est la fonction caractéristique d'une v.a $X$ et $X_n \xrightarrow{\mathcal{L}} X$.
+			\end{enumerate}
+			\item \textbf{Théorème de Slutsky}: soit $(X_n, Y_n)_n$ une suite de vecteurs aléatoires à valeurs dans $\mathbb{R}^d \times \mathbb{R}^d$. Supposons que $X_n \xrightarrow{\mathcal{L}} X$ et $Y_n \xrightarrow{\mathcal{L}} c \in \mathbb{R}^d$. Alors $(X_n, Y_n)_n$ converge en loi vers $(X,c)$.
+			\item \textbf{Théorème de la limite centrale}: soit $(X_n)_n$ une suite de v.a.r i.i.d de carré intégrable, de moyenne $m$ et de variance $\sigma^2 > 0$, alors les variables
+			\[\frac{S_n - nm}{\sigma \sqrt{n}}\]
+			convergent en loi vers une v.a de loi $\mathcal{N}(0,1)$.
+		\end{itemize}
+	\end{tcolorbox}
+
+	\newpage
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Exercice 3}} \newline
+		Soit $X_n$ telle que $\mathbb{P}(X_n = 0) = p_n$ et $\mathbb{P}(X_n = n) = 1 - p_n$ pour tout $n \in \mathbb{N}$.
+		\begin{itemize}
+			\item Donner une condition nécessaire et suffisante sur la suite $(p_n)$ pour que, quelle que soit la fonction $f: \mathbb{R} \to \mathbb{R}$ continue à support compact, $\mathbb{E}[f(X_n)]$ converge dans $\mathbb{R}$ quand $n \to + \infty$. On rappelle que si $f$ est à support compact, il existe un compact $K \subset \mathbb{R}$ tel quel, pour tout $x \notin K$, $f(x) = 0$.
+			\item Donner une condition nécessaire et suffisante sur $(p_n)$ pour que $X_n$ converge en loi et donner sa limite.
+		\end{itemize}
+	\end{tcolorbox}
+
+	\begin{enumerate}
+		\item
+	$f$ à support compact $\implies \exists n \in \mathbb{N}, \quad \forall n \geq n_0 \quad f(n) = 0$.
+	
+	Or, $\forall n \geq n_0 \quad \mathbb{E}(f(X_n)) = p_nf(0) + (1-p_n)f(n) = p_nf(0)$.
+	
+	Donc $\mathbb{E}(f(X_n))$ converge $\iff$ $p_n$ converge.
+	
+		\item
+		
+	$X_n \xrightarrow{\mathcal{L}} X \iff \forall f$ continue bornée $\mathbb{E}(f(X_n)) \xrightarrow{n \to +\infty} \mathbb{E}(f(x)) $.
+	
+	On note que si $p_n \xrightarrow{n \to +\infty} 1$ on a $\mathbb{E}(f(X_n)) \xrightarrow{n \to +\infty} f(0)$. Donc, $X_n \xrightarrow{\mathcal{L}} 0$.
+	
+	Réciproquement, si $X_n \xrightarrow{\mathcal{L}} 0$, en prenant $f$ continue à support compact on a $p_n \xrightarrow{n \to +\infty} p$. Soit $f(x) = \sin(x)$, $\mathbb{E}(f(X_n)) = (1 - p_n)\sin(n)$.
+	Donc, $\mathbb{E}(f(X_n))$ converge $\iff$ $1 - p_n \xrightarrow{n \to +\infty} 0$.
+	
+	On conclue que $X_n \xrightarrow{\mathcal{L}} X = 0 \quad \iff \quad p_n \xrightarrow{n \to +\infty} 1$
+	\end{enumerate}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Exercice 5}} \newline
+		Soit $X_n$ une v.a de loi uniforme sur $\{0, \frac{1}{n}, \frac{2}{n}, ..., \frac{n-1}{n}, 1\}$.
+		\begin{enumerate}
+			\item Trouver la limite en loi de la suite $(X_n)_{n \geq 1}$. On notera $X$ une v.a ayant cette loi.
+			\item Montrer que $\mathbb{P}(X_n \in \mathbb{Q})$ ne converge pas vers $\mathbb{P}(X \in \mathbb{Q})$. Comparer avec la définition de la convergence en loi.
+		\end{enumerate}
+	\end{tcolorbox}
+
+	\begin{enumerate}
+		\item
+	\begin{align}
+		\mathbb{E}(f(X_n)) &= \sum_{i=0}^n \frac{1}{n+1} f\left(\frac{i}{n}\right)\\
+		&= \frac{1}{n+1} \sum_{i=0}^{n} f\left(\frac{i}{n}\right)\\
+		&\xrightarrow{n \to +\infty} \int_{0}^{1} f(x) dx\\
+		&= \mathbb{E}(f(X)) \quad \text{pour $X \sim \mathcal{U}_{[0,1]}$}
+	\end{align}
+		
+	Donc, $X_n \xrightarrow{\mathcal{L}} X$ avec $X \sim \mathcal{U}_{[0,1]}$.		
+	
+		\item
+	\begin{align}
+		\begin{cases}
+		\mathbb{P}(X_n \in \mathbb{Q}) &= 1\\
+		\mathbb{P}(X \in \mathbb{Q}) = \mathbb{E}(\mathfrak{1}_{\mathbb{Q}}(x)) &= 0 \quad \text{car $\mathbb{Q}$ est de mesure nulle}
+		\end{cases}
+	\end{align}
+	
+	Donc $\mathbb{P}(X_n \in \mathbb{Q}) \not\to \mathbb{P}(X \in \mathbb{Q})$. C'est compatible avec la définition de convergence en loi car $\mathfrak{1}_{\mathbb{Q}}(x)$ n'est pas continue.
+		
+	\end{enumerate}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{Exercice 6}} \newline
+		Pour tout $n \geq 1$, on définit une fonction $F_n$ sur $[0,1]$ par
+		\[F_n : x \mapsto x - \frac{\sin(2\pi nx)}{2\pi n}\]
+		\begin{enumerate}
+			\item Montrer que pour tout $n \geq 1$ la fonction $F_n$ (prolongé par $0$ pour $x \leq 0$ et par $1$ pour $x \geq 1$) est la fonction de répartition d'une variable $X_n$ à densité.
+			\item Montrer que $X_n$ converge en loi vers une variable à densité $X$, mais que la densité de $X_n$ ne converge pas au sens de la convergence simple.
+		\end{enumerate}
+	\end{tcolorbox}
+
+	\begin{enumerate}
+		\item
+	$F_n$ est une fonction de repartition car
+	\begin{enumerate}
+		\item $F_n \xrightarrow{n \to -\infty} 0$
+		\item $F_n \xrightarrow{n \to +\infty} 1$
+		\item $F_n$ est croissante
+		\item $F_n$ est continue à droite
+	\end{enumerate}
+
+	$F_n'(x) = 1 - \cos(2\pi n x) \geq 0$. Donc, $F_n$ admet densité $f_n(x) = 1 - \cos(2 \pi n x)$.
+		
+		\item	
+	On note que 
+	\begin{align}
+		F_n \xrightarrow{n \to +\infty}
+		\begin{cases}
+		x \quad &\forall x \in [0,1]\\
+		0 \quad &\text{si } x < 0\\
+		1 \quad &\text{si } x >1
+		\end{cases}
+	\end{align}
+	Donc, $X_n \xrightarrow{\mathcal{L}} X \sim \mathcal{U}_{[0,1]}$.
+	Mais, $f_n(x) = 1 - \cos(2 \pi nx)$ ne converge pas (sauf pour un nombre dénombrable de $x$).
+	\end{enumerate}
+	
+\end{document}
