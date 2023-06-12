@@ -1,0 +1,114 @@
+\documentclass[french]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{breqn}
+
+\begin{document}
+	\title{DM2}
+	\date{Dernière modification \today}
+	
+	\maketitle
+	
+	\subsection*{Exercice 1}
+	
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+		Considérons l'équation différentielle $\dot{X} = f(X)$ où $f : \mathbb{R}^N \to \mathbb{R}^N$ est de classe $\mathcal{C}^1$.
+		
+		Pour tout $Z_0 \in \mathbb{R}^N$, on note $T_{max}(Z_0) > 0$ le temps d'existence maximal de la solution $Z(t)$ de l'équation différentielle $\dot{Z} = f(Z)$ de donnée initiale $Z(0) = Z_0$.
+		
+		On fixe $X_0 \in \mathbb{R}^N$. Soit $T \in \mathbb{R}$ tel que $0 < T < T_{max}(X_0)$.
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{(a)}} Montrer l'existence de $R > 1$ tel que $X(t) \in B_f(X_0, R)$ pour tout $t \leq T$.  
+	\end{tcolorbox}
+
+	On raisonne par l'absurde.
+	
+	Supposons que $ \forall R > 0, \exists t \in [0, T]$ tel que $X(t) \not\in B_f(X_0, R) \implies \exists T^* \in [0, T]$ tel que $X(t)$ explose en $T^* \leq T < T_{max}(X_0)$ ce qui est absurde.
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{(b)}}Montrer l'existence de $k_R > 0$ telle que $f$ soit $k_R$-lipschitzienne sur $B_f(X_0, 2R)$. 
+	\end{tcolorbox}
+
+	Par l'inégalité des accroissements finis, $\forall X,Y \in B_f(X_0, 2R)$,
+	
+	\[|| f(X) - f(Y)|| \leq \sup_{0\leq \theta \leq 1} || J_f(X + \theta(Y - X)) || \cdot ||Y - X||\]
+	
+	Donc, il suffit de poser $k_R = \sup_{0\leq \theta \leq 1} || J_f(X + \theta(Y - X)) ||$
+
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+		Soit $\epsilon > 0$ tel que $\epsilon < R$ et soit $Y_0 \in B_f(X_0, \epsilon)$.
+		
+		On note $Y(t)$ la solution maximale de l'équation $\dot{X} = f(X)$ telle que $Y(0) = Y_0$. Son temps maximal d'existence est $T_{max}(Y_0)$.
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{(c)}} Montrer qu'il existe $T' \in ]0, T[$ tel que $Y(t) \in B_f(X_0, 2R)$ pour tout $t \leq T'$.
+	\end{tcolorbox}
+
+	Soit $g: [0, \min(T_{max}(Y_0, T))] \to \mathbb{R}$ tel que  $g(t) = || Y(t) - X_0 || - 2R$.
+	
+	$g(t)$ est continue car $Y(t)$ est de classe $\mathcal{C}^1$.
+	
+	On note que $g(0) = ||Y(0) - X_0|| - 2R \leq \epsilon - 2R < -R < 0$
+	
+	On pose
+	\begin{align}
+	T' = 
+		\begin{cases}
+			&\inf \{ t : t \in [0, \min(T_{max}(Y_0, T))] \text{ et } g(t) = 0 \} \quad \text{ si l'infimum existe }\\
+			&T \quad \text{sinon}
+		\end{cases}
+	\end{align}
+	
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{(d)}} Montrer que pour un tel $T'$, on a $|| X(t) - Y(t) || \leq \epsilon e^{k_Rt}$ pour tout $t \in [0, T']$.
+	\end{tcolorbox}
+
+	Soit $g : [0, T'] \to \mathbb{R}$ tel que $g(t) = || Y(t) - X(t) ||$
+
+	\begin{align}
+		\dot{g}(t) &= || \dot{Y}(t) - \dot{X}(t) ||\\
+						 &= || f(Y(t)) - f(X(t)) ||\\
+						 &\leq k_R || Y(t) - X(t) ||\\
+						 &= k_Rg(t)
+	\end{align}
+	
+	On considère $\phi$ solution du problème de Cauchy
+	
+	\begin{align}
+		\begin{cases}
+		\phi(t) &= k_R\phi(t)\\
+		\phi(0) &= \epsilon
+		\end{cases}
+	\end{align}
+	
+	On note que $\phi(t) = \epsilon e^{k_Rt} \quad \forall t \in [0, T']$.
+	
+	On note que $g(0) = ||Y(0) - X(0)|| < \epsilon \implies \phi(0) \geq |g(0)|$.
+	
+	Par le lemme de Gronwall, $|g(t)| = g(t) \leq \phi(t)$.
+	
+	Donc, $ || Y(t) - X(t) || \leq \epsilon e^{k_Rt} \quad \forall t \in [0, T']$.
+	
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{(e)}} Montrer qu'il existe $\epsilon > 0$ tel que $T_{max}(Y_0) > T$(on pourra raisonner par l'absurde en supposant que $T_{max}(Y_0) \leq T$ et que donc $Y$ explose en temps fini). 
+	\end{tcolorbox}
+	
+	
+
+
+	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
+		\textbf{\large{()}} 
+	\end{tcolorbox}
+
+\end{document}
