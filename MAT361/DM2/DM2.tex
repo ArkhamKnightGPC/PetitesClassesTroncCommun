@@ -38,7 +38,9 @@
 		\textbf{\large{(b)}}Montrer l'existence de $k_R > 0$ telle que $f$ soit $k_R$-lipschitzienne sur $B_f(X_0, 2R)$. 
 	\end{tcolorbox}
 
-	Par l'inégalité des accroissements finis, $\forall X,Y \in B_f(X_0, 2R)$,
+	On note que $f$ est de classe $\mathcal{C}^1$ et $\forall X,Y \in B_f(X_0, 2R) \subset \mathbb{R}^N$ le segment joignant $X$ à $Y$ est contenu dans $B_f(X_0, 2R)$.
+
+	Donc, par l'inégalité des accroissements finis, $\forall X,Y \in B_f(X_0, 2R)$,
 	
 	\[|| f(X) - f(Y)|| \leq \sup_{0\leq \theta \leq 1} || J_f(X + \theta(Y - X)) || \cdot ||Y - X||\]
 	
@@ -51,7 +53,7 @@
 	\end{tcolorbox}
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{\large{(c)}} Montrer qu'il existe $T' \in ]0, T[$ tel que $Y(t) \in B_f(X_0, 2R)$ pour tout $t \leq T'$.
+		\textbf{\large{(c)}} Montrer qu'il existe $T' \in ]0, T]$ tel que $Y(t) \in B_f(X_0, 2R)$ pour tout $t \leq T'$.
 	\end{tcolorbox}
 
 	Soit $g: [0, \min(T_{max}(Y_0, T))] \to \mathbb{R}$ tel que  $g(t) = || Y(t) - X_0 || - 2R$.
@@ -69,7 +71,7 @@
 		\end{cases}
 	\end{align}
 	
-	On note que $\forall t \in [0, T'] \quad g(t) \leq 0 \iff Y(t) \in B_f(X_0, 2R)$.
+	On note que $0 < T' \leq T$ et  $\forall t \in [0, T'] \quad g(t) \leq 0 \iff Y(t) \in B_f(X_0, 2R)$.
 	
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{(d)}} Montrer que pour un tel $T'$, on a $|| X(t) - Y(t) || \leq \epsilon e^{k_Rt}$ pour tout $t \in [0, T']$.
@@ -107,7 +109,7 @@
 	
 	On raisonne par l'absurde.
 	
-	Supposons $\forall \epsilon > 0 \quad T_max(Y)$
+	Supposons $\forall \epsilon > 0 \quad T_{max}(Y)$
 
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
