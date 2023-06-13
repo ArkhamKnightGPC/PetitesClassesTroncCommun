@@ -214,6 +214,46 @@
 		\[\lim_{\epsilon \to 0} T_{max}(a, \epsilon) \not= T_{max}(a,0)\]
 	\end{tcolorbox}
 
+	Si $y_0 = 0$, on note que 
+	
+	\begin{align}
+		\dot{x}(t) &= x^2\\
+		\iff \frac{dx}{x^2} &= dt \quad \text{similaire à l'équation de l'exercice 1g} \\
+		\iff x(t) &= \frac{x_0}{1 - x_0t}
+	\end{align}
+	
+	Donc, $T_{max}(a, 0) = \frac{1}{a} < +\infty$.
+	
+	Alors, soit $y_0$ tel que $y_0x_0^2 < 1$.
+	
+	On note que
+	
+	\begin{align}
+		\dot{x}(t) &= x^2 - y_0x^4\\
+		\iff \frac{dx}{x^2(1 - y_0x^2)} &= dt\\
+		\iff dx \left(\frac{1}{x^2} + \frac{y_0}{1 - y_0x^2} \right) &= dt\\
+		\iff \int_{x_0}^{x(t)} dx \left(\frac{1}{x^2} + \frac{y_0}{1 - y_0x^2} \right) &= \int_{0}^{t} dt
+	\end{align}
+	
+	Avec la substitution $u = x_0\sqrt{y_0}$
+	
+	\begin{align}
+		\int_{x_0}^{x(t)} \frac{y_0}{1 - y_0x^2} dx &= \int_{x_0\sqrt{y_0}}^{x(t)\sqrt{y_0}} \frac{y_0}{1 - u^2} \frac{du}{\sqrt{y_0}}\\
+		&= \frac{\sqrt{y_0}}{2}\left(\int_{x_0\sqrt{y_0}}^{x(t)\sqrt{y_0}} \frac{1}{1+u} + \frac{1}{1-u}\right)\\
+		&= \frac{\sqrt{y_0}}{2}(\log(1 + x(t)\sqrt{y_0}) + \log(1 - x(t)\sqrt{y_0}) - \log(1 + x_0\sqrt{y_0}) - \log(1 - x_0\sqrt{y_0}))
+	\end{align}
+	
+	On note que $\log(1 - x_0\sqrt{y_0})$ est bien définie car $x_0\sqrt{y_0} < 1$.
+	
+	Donc,
+	
+		\[-\frac{1}{x(t)} + \frac{1}{x_0} + \frac{\sqrt{y_0}}{2}\log\left(\frac{1 - x(t)^2y_0}{1-x_0^2y_0}\right) = t\]
+	
+	On note que $|x(t)| < \frac{1}{y_0}$. Donc, la solution est globale.
+	
+	\[T_{max}(a, \epsilon) = + \infty\]
+
+
 	\subsection*{Exercice 2}
 	
 	\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
@@ -223,9 +263,49 @@
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{(a)}} Soit $A \in M_n(\mathbb{R})$ et $f:\mathbb{R} \to M_n(\mathbb{R})$ définie par $f(t) = e^{tA}$. Montrer que $f$ est de classe $\mathcal{C}^1$ et calculer sa dérivée. 
 	\end{tcolorbox}
+	
+	On veut montrer que $||e^{A}|| \leq e^{ ||A||}$.
+	
+	\begin{align}
+		||e^A|| &= || \sum_{k=0}^{+\infty} \frac{A^k}{k!}||\\
+		&\leq \sum_{k=0}^{+\infty} \frac{||A^k||}{k!}\\
+		&\leq \sum_{k=0}^{+\infty} \frac{||A||^k}{k}\\
+		&= e^{||A||}
+	\end{align}
+	
+	Alors, on veut montrer que $f$ est continue. $\forall t_0 \in \mathbb{R} \quad \forall \epsilon > 0$, on pose 
+	
+	\[\delta = \frac{\ln(\epsilon)}{||A||}\]
+	
+	Soit $t \in \mathbb{R}$ tel que $| t - t_0 | < \delta$, on a
+	
+	\begin{align}
+		|| f(t) - f(t_0)|| &= || e^{(t-t_0)A}||\\
+		&\leq ||e^{\delta A}||\\
+		&\leq e^{|| \delta A||}\\
+		&= e^{||A|| \cdot \frac{\ln(\epsilon)}{||A||}}\\
+		&= \epsilon
+	\end{align}
+	
+	On veut calculer $\forall t \in \mathbb{R}$ la limite 
+	^
+	\begin{align}
+		\lim_{h \to 0} \frac{f(t+h) - f(t)}{h} &= \lim_{h \to 0} \frac{e^{A(t+h)} - e^{At}}{h} \\
+		&= \lim_{h \to 0} \frac{e^{Ah}}{h}\\
+		&= \lim_{h \to 0} \frac{1}{h} \sum_{k = 0}^{+\infty} \frac{1}{k!} (Ah)^k\\
+		&= \lim_{h \to 0} A \sum_{k = 0}^{+\infty} \frac{1}{k!} (Ah)^k \\
+		&= A e^{At}
+	\end{align}
+	
+	Donc $f'(t)$ existe et on note que $f'(t) = Ae^{tA}$ est continue car $f(t)$ est continue.
+	
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{\large{(b)}}Soit $f:\mathbb{R} \to M_n(\mathbb{R})$ une application de classe $\mathcal{C}^1$ telle que $f(s+t) = f(s)f(t)$ pour tous $s,t \in \mathbb{R}$ et telle que $f(0)$ est inversible. Montrer qu'il existe une matrice $A \in M_n(\mathbb{R})$ telle que $f(t) = e^{tA}$ pout tout $t \in \mathbb{R}$.
 	\end{tcolorbox}
 
+	$f(s+t) = f(s)f(t)$ est l'équation de Cauchy. Donc $\forall t \in \mathbb{R} \quad f(t) = f(1)^t$.
+	
+	Il suffit de poser $A \in M_n(\mathbb{R})$ tel que $f(1) = e^A$.
+	
 \end{document}
