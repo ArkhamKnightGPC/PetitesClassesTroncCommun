@@ -288,7 +288,7 @@
 	\end{align}
 	
 	On veut calculer $\forall t \in \mathbb{R}$ la limite 
-	^
+	
 	\begin{align}
 		\lim_{h \to 0} \frac{f(t+h) - f(t)}{h} &= \lim_{h \to 0} \frac{e^{A(t+h)} - e^{At}}{h} \\
 		&= \lim_{h \to 0} \frac{e^{Ah}}{h}\\
@@ -304,8 +304,8 @@
 		\textbf{\large{(b)}}Soit $f:\mathbb{R} \to M_n(\mathbb{R})$ une application de classe $\mathcal{C}^1$ telle que $f(s+t) = f(s)f(t)$ pour tous $s,t \in \mathbb{R}$ et telle que $f(0)$ est inversible. Montrer qu'il existe une matrice $A \in M_n(\mathbb{R})$ telle que $f(t) = e^{tA}$ pout tout $t \in \mathbb{R}$.
 	\end{tcolorbox}
 
-	$f(s+t) = f(s)f(t)$ est l'équation de Cauchy. Donc $\forall t \in \mathbb{R} \quad f(t) = f(1)^t$.
+	On note que $f'(t) = f'(0)f(t)$.
 	
-	Il suffit de poser $A \in M_n(\mathbb{R})$ tel que $f(1) = e^A$.
+	Soit $f'(0) = A \in M_n(\mathbb{R}) \quad \implies \quad  f(t) = e^{tA} \quad \forall t \in \mathbb{R}$ est solution globale.
 	
 \end{document}
